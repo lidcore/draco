@@ -1,0 +1,73 @@
+---
+image:
+  base:
+    builder:
+      type: googlecompute
+      source_image_family: ubuntu-1604-lts
+      ssh_username: ubuntu
+      image_family: draco-images
+      machine_type: n1-standard-1
+      disk_size: 50
+      disk_type: pd-ssd
+    provisioners:
+      - type: shell
+        script: @module_path@/packer/base.sh
+        priority: 5
+  app:
+    builder:
+      type: googlecompute
+      source_image_family: draco-images
+      source_image: draco-base
+      ssh_username: ubuntu
+      image_family: draco-images
+      machine_type: n1-standard-1
+      disk_size: 50
+      disk_type: pd-ssd
+    provisioners:
+      - type: file
+        source: package.json
+        destination: /home/ubuntu/app/package.json
+        priority: 10
+      - type: file
+        source: bsconfig.json
+        destination: /home/ubuntu/app/bsconfig.json
+        priority: 10
+      - type: file
+        source: @module_path@/packer/draco.systemd.in
+        destination: /home/ubuntu/app/draco.systemd.in
+        priority: 10
+      - type: file
+        source: ./config/@stage@/dotenv
+        destination: /home/ubuntu/app/.env
+        priority: 10
+      - type: shell
+        inline:
+          - mkdir -p /home/ubuntu/app/config/@stage@
+        priority: 15
+      - type: file
+        source: ./config/@stage@/draco.yml
+        destination: /home/ubuntu/app/config/@stage@/draco.yml
+        priority: 10
+      - type: file
+        source: src
+        destination: /home/ubuntu/app/src
+        priority: 10
+      - type: shell
+        script: @module_path@/packer/app.sh
+        priority: 5
+functions:
+  group: draco
+  files:
+    - bsconfig.json
+    - firebase.json
+    - src
+    - config
+    - source: ./config/@stage@/dotenv
+      destination: .env
+  bs-platform.json:
+    name: bs-platform
+    dependencies: {}
+  package.json:
+    main: node_modules/@lidcore/draco/src/run_functions.js
+    engines:
+      node: "8"

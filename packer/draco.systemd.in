@@ -1,0 +1,18 @@
+[Unit]
+Description=draco daemon
+After=network.target
+Documentation=https://github.com/lidcore/draco
+
+[Service]
+Type=simple
+User=ubuntu
+WorkingDirectory=@base_dir@
+ExecStart=@node_binary@ @run_script@
+Restart=always
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=draco
+
+[Install]
+WantedBy=multi-user.target
+Alias=draco.service

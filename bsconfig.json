@@ -1,0 +1,23 @@
+{
+  "name": "@lidcore/draco",
+  "namespace": true,
+  "sources": [
+    "src",
+    "src/bindings",
+    "src/lib",
+    "src/bin"
+  ],
+  "package-specs": {
+    "module": "commonjs",
+    "in-source": true
+  },
+  "bsc-flags": [
+    "-bs-super-errors"
+  ],
+  "bs-dependencies" : [
+    "bs-async-monad",
+    "@lidcore/bs-node",
+    "@lidcore/bs-express"
+  ],
+  "refmt": 3,
+}

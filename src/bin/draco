@@ -1,0 +1,25 @@
+#!/bin/sh
+
+MODE=$1
+
+DIR=$(dirname $0)
+CWD=$(cd ${DIR} && pwd)
+
+case ${MODE} in
+  "image")
+    "${CWD}/draco-image" "$@"
+    ;;
+  "import")
+    "${CWD}/draco-import" "$@"
+    ;;
+  "instances")
+    "${CWD}/draco-instances" "$@"
+    ;;
+  "functions")
+    "${CWD}/draco-functions" "$@"
+    ;;
+  *)
+    (>&2 echo "Invalid mode!")
+    exit 1
+    ;;
+esac
