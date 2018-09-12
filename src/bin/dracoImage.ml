@@ -40,6 +40,7 @@ let provisioners ~config mode =
         get mode
 
 let buildConfig ~config mode =
+  let config = Obj.magic config in
   let provisioners =
     provisioners ~config mode
   in
@@ -53,8 +54,10 @@ let buildConfig ~config mode =
     in
     let image_name =
       match mode with
-        | "app" | "world" -> "draco-app"
-        | _ -> "draco-base"
+        | "app" | "world" ->
+            config##image##app##name
+        | _ ->
+            config##image##base##name
     in
     let builder =
       getConfig ~config ~mode "builder"

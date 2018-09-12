@@ -63,10 +63,10 @@ function buildConfig(config, mode) {
   switch (mode$1) {
     case "app" : 
     case "world" : 
-        image_name = "draco-app";
+        image_name = config.image.app.name;
         break;
     default:
-      image_name = "draco-base";
+      image_name = config.image.base.name;
   }
   var builder = getConfig(config, mode$1, "builder");
   var condSet = function (lbl, value) {

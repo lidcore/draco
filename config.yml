@@ -1,6 +1,7 @@
 ---
 image:
   base:
+    name: draco-base
     builder:
       type: googlecompute
       source_image_family: ubuntu-1604-lts
@@ -14,6 +15,7 @@ image:
         script: @module_path@/packer/base.sh
         priority: 5
   app:
+    name: draco-app
     builder:
       type: googlecompute
       source_image_family: draco-images
