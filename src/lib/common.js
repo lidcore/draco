@@ -22,7 +22,7 @@ function requeue(msg, topic) {
         return partial_arg$1(partial_arg, param);
       });
   } else {
-    Logger$LidcoreDraco.info("Retrying message: " + (String(msg$1) + ""));
+    Logger$LidcoreDraco.info("Retrying message: " + (String(msg$1) + (" of topic " + (String(topic) + ""))));
     return BsAsyncMonad.Callback[/* >> */3](Gcloud$LidcoreDraco.PubSub[/* topic */1](pubsub, topic), (function (topic) {
                   return Gcloud$LidcoreDraco.PubSub[/* publish */2](topic, msg$1);
                 }));

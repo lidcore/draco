@@ -22,7 +22,7 @@ let requeue ~msg topic =
         (JsError.make {j|[$(topic)] Message reached max retries: $(msg)|j}))
   else
    begin
-    Logger.info {j|Retrying message: $(msg)|j};
+    Logger.info {j|Retrying message: $(msg) of topic $(topic)|j};
     Gcloud.PubSub.topic pubsub topic >> fun topic ->
       Gcloud.PubSub.publish topic msg
    end
