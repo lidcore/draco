@@ -20,3 +20,11 @@ Draco is based on the following elements:
 - [Firebase Functions](https://firebase.google.com/docs/functions/)
 - [Dotenv](https://github.com/motdotla/dotenv)
 - [Winston/papertrail](https://github.com/kenperkins/winston-papertrail) (optional)
+
+## Getting started
+
+```
+% npm init draco /path/to/code
+```
+
+This will initiate a new `draco` project using [create-draco](https://github.com/lidcore/create-draco).
