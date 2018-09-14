@@ -17,6 +17,7 @@ Draco is based on the following elements:
 - [node.js](https://nodejs.org/)
 - [BuckleScript](https://bucklescript.github.io/)
 - [BsAsyncMonad](https://github.com/lidcore/bs-async-monad)
+- [Packer](https://www.packer.io/)
 - [Google Compute Node Client](https://github.com/googleapis/nodejs-compute)
 - [Firebase Functions](https://firebase.google.com/docs/functions/)
 - [Dotenv](https://github.com/motdotla/dotenv)
