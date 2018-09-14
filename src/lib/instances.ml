@@ -107,8 +107,10 @@ module Runtime = struct
           if not !stopping then
             begin
               let handler () =
-                handler (Gcloud.PubSub.dataGet msg) >| fun _ ->
-                  Gcloud.PubSub.ack msg
+                try
+                  handler (Gcloud.PubSub.dataGet msg) >| fun _ ->
+                    Gcloud.PubSub.ack msg
+                with exn -> Callback.fail exn
               in
               let handler () =
                 handler () ||> fun exn ->

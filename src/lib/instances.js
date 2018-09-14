@@ -5,6 +5,7 @@ var List = require("bs-platform/lib/js/list.js");
 var $$Array = require("bs-platform/lib/js/array.js");
 var Curry = require("bs-platform/lib/js/curry.js");
 var Queue = require("bs-platform/lib/js/queue.js");
+var Js_exn = require("bs-platform/lib/js/js_exn.js");
 var Hashtbl = require("bs-platform/lib/js/hashtbl.js");
 var BsAsyncMonad = require("bs-async-monad/src/bsAsyncMonad.js");
 var Js_primitive = require("bs-platform/lib/js/js_primitive.js");
@@ -134,9 +135,18 @@ function register(label, param) {
                                                 return Gcloud$LidcoreDraco.PubSub[/* nack */6](msg);
                                               } else {
                                                 var handler$4 = function () {
-                                                  return BsAsyncMonad.Callback[/* >| */7](Curry._1(handler$3, msg.data), (function () {
-                                                                return Gcloud$LidcoreDraco.PubSub[/* ack */5](msg);
-                                                              }));
+                                                  try {
+                                                    return BsAsyncMonad.Callback[/* >| */7](Curry._1(handler$3, msg.data), (function () {
+                                                                  return Gcloud$LidcoreDraco.PubSub[/* ack */5](msg);
+                                                                }));
+                                                  }
+                                                  catch (raw_exn){
+                                                    var partial_arg = Js_exn.internalToOCamlException(raw_exn);
+                                                    var partial_arg$1 = BsAsyncMonad.Callback[/* fail */1];
+                                                    return (function (param) {
+                                                        return partial_arg$1(partial_arg, param);
+                                                      });
+                                                  }
                                                 };
                                                 var id = msg.id;
                                                 var handler$5 = BsAsyncMonad.Callback[/* >> */3](is_duplicate(id), (function (ret) {
