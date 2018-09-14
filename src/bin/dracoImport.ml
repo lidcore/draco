@@ -19,7 +19,11 @@ let () =
     Array.sub argv 2 (argc-2)
   in
   ignore(Js.Array.unshift "draco" args);
-  Arg.parse_argv ~current:(ref 0) args opts (fun s -> m := s) !usageMsg;
+  begin
+   try
+     Arg.parse_argv ~current:(ref 0) args opts (fun s -> m := s) !usageMsg;
+   with _ -> die ();
+  end;
   if !m = "" then
     die ~msg:"No module specified!" ();
   let dir =

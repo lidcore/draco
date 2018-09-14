@@ -40,10 +40,15 @@ var args = $$Array.sub(DracoCommon$LidcoreDraco.argv, 2, DracoCommon$LidcoreDrac
 
 args.unshift("draco");
 
-Arg.parse_argv(/* record */[/* contents */0], args, opts, (function (s) {
-        m[0] = s;
-        return /* () */0;
-      }), DracoCommon$LidcoreDraco.usageMsg[0]);
+try {
+  Arg.parse_argv(/* record */[/* contents */0], args, opts, (function (s) {
+          m[0] = s;
+          return /* () */0;
+        }), DracoCommon$LidcoreDraco.usageMsg[0]);
+}
+catch (exn){
+  DracoCommon$LidcoreDraco.die(undefined, /* () */0);
+}
 
 if (m[0] === "") {
   DracoCommon$LidcoreDraco.die("No module specified!", /* () */0);
