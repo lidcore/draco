@@ -20,13 +20,14 @@ var dummy_logger = (
 function setup(url) {
   var url$1 = Url$LidcoreBsNode.parse(url);
   var hostname = Firebase$LidcoreDraco.Functions[/* running */0] ? Env$LidcoreDraco.get(undefined, "FUNCTION_NAME") : Os$LidcoreBsNode.hostname(/* () */0);
+  var system = Env$LidcoreDraco.get("draco", "DRACO_SYSTEM");
   var logFormat = function (level, msg) {
     return "[" + (String(hostname) + ("] " + (String(level) + (" " + (String(msg) + "")))));
   };
   var papertrail = new (Winston.transports.Papertrail)({
         host: url$1.hostname,
         port: url$1.port,
-        hostname: "decode-" + (String(Env$LidcoreDraco.stage) + ""),
+        hostname: "" + (String(system) + ("-" + (String(Env$LidcoreDraco.stage) + ""))),
         logFormat: logFormat
       });
   return new Winston.Logger({

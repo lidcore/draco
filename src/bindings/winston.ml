@@ -42,6 +42,9 @@ let setup url =
     else
       Os.hostname()
   in
+  let system =
+    Env.get ~default:"draco" "DRACO_SYSTEM"
+  in
   let logFormat level msg =
      {j|[$(hostname)] $(level) $(msg)|j}
   in
@@ -50,7 +53,7 @@ let setup url =
       (options
         ~host:url##hostname
         ~port:url##port
-        ~hostname:{j|decode-$(stage)|j}
+        ~hostname:{j|$(system)-$(stage)|j}
         ~logFormat:logFormat)
   in
   let logger =
