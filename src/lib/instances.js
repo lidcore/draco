@@ -59,6 +59,8 @@ function msg_check_key(id) {
 
 var redis_client = /* record */[/* contents */undefined];
 
+var has_redis = Env$LidcoreDraco.get_some(undefined, "REDIS_URL") !== undefined;
+
 function get_redis() {
   var match = redis_client[0];
   if (match !== undefined) {
@@ -71,24 +73,31 @@ function get_redis() {
 }
 
 function is_duplicate(id) {
-  var redis = get_redis(/* () */0);
-  var key = msg_check_key(id);
-  return BsAsyncMonad.Callback[/* >> */3]((function (param) {
-                return Redis$LidcoreDraco.setnx(redis, key, "foo", param);
-              }), (function (n) {
-                if (n === 0) {
-                  var partial_arg = BsAsyncMonad.Callback[/* return */0];
-                  return (function (param) {
-                      return partial_arg(true, param);
-                    });
-                } else {
-                  return BsAsyncMonad.Callback[/* >| */7]((function (param) {
-                                return Redis$LidcoreDraco.expire(redis, key, msg_check_expire, param);
-                              }), (function () {
-                                return false;
-                              }));
-                }
-              }));
+  if (has_redis) {
+    var redis = get_redis(/* () */0);
+    var key = msg_check_key(id);
+    return BsAsyncMonad.Callback[/* >> */3]((function (param) {
+                  return Redis$LidcoreDraco.setnx(redis, key, "foo", param);
+                }), (function (n) {
+                  if (n === 0) {
+                    var partial_arg = BsAsyncMonad.Callback[/* return */0];
+                    return (function (param) {
+                        return partial_arg(true, param);
+                      });
+                  } else {
+                    return BsAsyncMonad.Callback[/* >| */7]((function (param) {
+                                  return Redis$LidcoreDraco.expire(redis, key, msg_check_expire, param);
+                                }), (function () {
+                                  return false;
+                                }));
+                  }
+                }));
+  } else {
+    var partial_arg = BsAsyncMonad.Callback[/* return */0];
+    return (function (param) {
+        return partial_arg(false, param);
+      });
+  }
 }
 
 function log(msg) {

@@ -56,6 +56,9 @@ module Runtime = struct
 
   let redis_client = ref None
 
+  let has_redis =
+    Env.get_some "REDIS_URL" <> None
+
   let get_redis () =
     match !redis_client with
       | Some client -> client
@@ -68,6 +71,7 @@ module Runtime = struct
           client
   
   let is_duplicate id =
+    if not has_redis then return false else
     let redis = get_redis () in
     let key = msg_check_key id in
     Redis.setnx redis key "foo" >> fun n ->
