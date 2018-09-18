@@ -19,7 +19,6 @@ image:
     builder:
       type: googlecompute
       source_image_family: draco-images
-      source_image: draco-base
       ssh_username: ubuntu
       image_family: draco-images
       machine_type: n1-standard-1

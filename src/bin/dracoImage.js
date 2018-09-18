@@ -82,6 +82,9 @@ function buildConfig(config, mode) {
   condSet("zone", config.zone);
   condSet("instance_name", instance_name);
   condSet("image_name", image_name);
+  if (mode$1 === "app") {
+    condSet("source_image", config.image.base.name);
+  }
   return {
           provisioners: provisioners$1,
           builders: /* array */[builder]

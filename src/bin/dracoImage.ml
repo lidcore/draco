@@ -71,6 +71,8 @@ let buildConfig ~config mode =
     condSet "zone" config##zone;
     condSet "instance_name" instance_name;
     condSet "image_name" image_name;
+    if mode = "app" then
+      condSet "source_image" config##image##base##name;
     builder
   in
   packerConfig ~provisioners ~builders:[|builder|]
