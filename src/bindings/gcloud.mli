@@ -169,3 +169,21 @@ module Firestore : sig
   val latest_cleanup : t -> float option Callback.t
   val cleanup_collection : t -> Collection.t -> unit Callback.t
 end
+
+module Storage : sig
+  type t
+  type bucket
+  type file
+
+  type url_config = {
+    action:  string;
+    expires: int;
+  } [@@bs.deriving abstract]
+
+  val init : ?config:config -> unit -> t
+  val bucket : t -> string -> bucket
+  val file : bucket -> string -> file
+  val createReadStream : file -> Stream.readable
+  val createWriteStream : file -> Stream.writable
+  val getSignedUrl : config:url_config -> file -> string Callback.t
+end

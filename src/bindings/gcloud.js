@@ -12,6 +12,7 @@ var Utils$LidcoreDraco = require("../lib/utils.js");
 var Pubsub = require("@google-cloud/pubsub");
 var Buffer$LidcoreBsNode = require("@lidcore/bs-node/src/buffer.js");
 var Compute = require("@google-cloud/compute");
+var Storage = require("@google-cloud/storage");
 var Firestore = require("@google-cloud/firestore");
 var DracoCommon$LidcoreDraco = require("../bin/dracoCommon.js");
 
@@ -393,6 +394,25 @@ function cleanup_collection(db, c) {
               }));
 }
 
+function init$3($staropt$star, _) {
+  var config = $staropt$star !== undefined ? Js_primitive.valFromOption($staropt$star) : default_config;
+  var gcs = Storage(config);
+  var request = function (ops) {
+    ops.forever = false;
+    return ops;
+  };
+  var interceptor = {
+    request: request
+  };
+  gcs.interceptors.push(interceptor);
+  return gcs;
+}
+
+function getSignedUrl(config, file, cb) {
+  file.getSignedUrl(config, cb);
+  return /* () */0;
+}
+
 function PubSub_005(prim) {
   prim.ack();
   return /* () */0;
@@ -543,10 +563,36 @@ var Firestore$1 = [
   cleanup_collection
 ];
 
+function Storage_001(prim, prim$1) {
+  return prim.bucket(prim$1);
+}
+
+function Storage_002(prim, prim$1) {
+  return prim.file(prim$1);
+}
+
+function Storage_003(prim) {
+  return prim.createReadStream();
+}
+
+function Storage_004(prim) {
+  return prim.createWriteStream();
+}
+
+var Storage$1 = [
+  init$3,
+  Storage_001,
+  Storage_002,
+  Storage_003,
+  Storage_004,
+  getSignedUrl
+];
+
 exports.project = project;
 exports.zone = zone;
 exports.default_config = default_config;
 exports.PubSub = PubSub;
 exports.Compute = Compute$1;
 exports.Firestore = Firestore$1;
+exports.Storage = Storage$1;
 /* project Not a pure module */
