@@ -5,7 +5,9 @@ val project : string
 val zone    : string
 
 type config = {
-  projectId : string [@bs.optional]
+  projectId:   string [@bs.optional];
+  keyFilename: string [@bs.optional];
+  serviceAccountEmail: string [@bs.optional];
 } [@@bs.deriving abstract]
 
 val default_config : config

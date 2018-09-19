@@ -7,7 +7,9 @@ let project = (DracoCommon.config ())##projectId
 let zone = (DracoCommon.config ())##zone
 
 type config = {
-  projectId : string [@bs.optional]
+  projectId:   string [@bs.optional];
+  keyFilename: string [@bs.optional];
+  serviceAccountEmail: string [@bs.optional];
 } [@@bs.deriving abstract]
 
 let default_config =
