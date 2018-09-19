@@ -396,7 +396,7 @@ module Storage = struct
 
   type url_config = {
     action:  string;
-    expires: int;
+    expires: float;
   } [@@bs.deriving abstract]
 
   external init : config -> t = "@google-cloud/storage" [@@bs.module]

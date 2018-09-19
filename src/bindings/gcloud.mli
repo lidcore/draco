@@ -179,7 +179,7 @@ module Storage : sig
 
   type url_config = {
     action:  string;
-    expires: int;
+    expires: float;
   } [@@bs.deriving abstract]
 
   val init : ?config:config -> unit -> t
