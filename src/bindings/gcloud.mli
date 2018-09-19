@@ -185,6 +185,7 @@ module Storage : sig
   val init : ?config:config -> unit -> t
   val bucket : t -> string -> bucket
   val file : bucket -> string -> file
+  val exists : file -> bool Callback.t
   val createReadStream : file -> Stream.readable
   val createWriteStream : file -> Stream.writable
   val getSignedUrl : config:url_config -> file -> string Callback.t

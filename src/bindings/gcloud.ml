@@ -426,6 +426,7 @@ module Storage = struct
 
   external bucket : t -> string -> bucket = "" [@@bs.send]
   external file : bucket -> string -> file = "" [@@bs.send]
+  external exists : file -> bool callback -> unit = "" [@@bs.send]
   external createReadStream : file -> Stream.readable = "" [@@bs.send]
   external createWriteStream : file -> Stream.writable = "" [@@bs.send]
   external getSignedUrl : file -> url_config -> string callback -> unit = "" [@@bs.send]

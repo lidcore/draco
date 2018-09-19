@@ -571,11 +571,16 @@ function Storage_002(prim, prim$1) {
   return prim.file(prim$1);
 }
 
-function Storage_003(prim) {
-  return prim.createReadStream();
+function Storage_003(prim, prim$1) {
+  prim.exists(prim$1);
+  return /* () */0;
 }
 
 function Storage_004(prim) {
+  return prim.createReadStream();
+}
+
+function Storage_005(prim) {
   return prim.createWriteStream();
 }
 
@@ -585,6 +590,7 @@ var Storage$1 = [
   Storage_002,
   Storage_003,
   Storage_004,
+  Storage_005,
   getSignedUrl
 ];
 
