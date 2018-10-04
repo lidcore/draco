@@ -63,6 +63,7 @@ let printexc exn =
     if Js.Array.isArray exn then
       Printexc.to_string exn
     else
+      {j|$(exn)|j}
 
 module Json = struct
   let parse : string -> 'a Js.t = [%bs.raw{|function (x) {
