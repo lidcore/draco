@@ -9,7 +9,8 @@ module Runtime : sig
   } [@@bs.deriving abstract]
 
   type t = [
-    `Subscription of subscription_instance
+    | `Callback of unit -> unit Callback.t
+    | `Subscription of subscription_instance
   ]
 
   val register : string -> t -> unit
