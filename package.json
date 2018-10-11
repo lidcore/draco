@@ -33,7 +33,7 @@
     "bs-platform": "^4.0.5"
   },
   "dependencies": {
-    "@google-cloud/compute": "git+https://github.com/toots/nodejs-compute.git#draco",
+    "@google-cloud/compute": "git+https://github.com/toots/nodejs-compute.git#instance-group-manager",
     "@google-cloud/firestore": "^0.14.1",
     "@google-cloud/pubsub": "^0.18.0",
     "@google-cloud/storage": "^1.7.0",
