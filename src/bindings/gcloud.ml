@@ -152,12 +152,18 @@ module Compute = struct
       external recreateVMs : t -> unit Callback.callback -> unit = "" [@@bs.send]
     end
     external instanceGroupManager : t -> string -> InstanceGroupManager.t = "" [@@bs.send]
-    external createInstanceGroupManager : t -> string -> InstanceTemplate.t -> int -> 'a Js.t Js.Nullable.t -> InstanceGroupManager.t Callback.callback -> unit = "" [@@bs.send]
-    let createInstanceGroupManager ?options ~targetSize ~instanceTemplate t name =
+
+    type createInstanceOptions = {
+      instanceTemplate: InstanceTemplate.t;
+      targetSize: int
+    } [@@bs.deriving abstract]
+
+    external createInstanceGroupManager : t -> string -> createInstanceOptions -> InstanceGroupManager.t Callback.callback -> unit = "" [@@bs.send]
+    let createInstanceGroupManager ~targetSize ~instanceTemplate t name =
       let options =
-        Js.Nullable.fromOption options
+        createInstanceOptions ~targetSize ~instanceTemplate
       in
-      createInstanceGroupManager t name instanceTemplate targetSize options
+      createInstanceGroupManager t name options
 
     module VM = struct
       type t

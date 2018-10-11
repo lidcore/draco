@@ -283,7 +283,7 @@ function initialize(projectId, serviceAccount, zone, instanceTemplate, autoscale
     var partial_arg$1 = BsAsyncMonad.Callback[/* async_unless */16];
     return (function (param) {
         return partial_arg$1(partial_arg, (function () {
-                      return BsAsyncMonad.Callback[/* >> */3](Curry._5(Gcloud$LidcoreDraco.Compute[/* Zone */5][/* createInstanceGroupManager */5], undefined, 0, instanceTemplate$1, zone$1, name), Gcloud$LidcoreDraco.Compute[/* Zone */5][/* InstanceGroupManager */3][/* get */1]);
+                      return BsAsyncMonad.Callback[/* >> */3](Curry._4(Gcloud$LidcoreDraco.Compute[/* Zone */5][/* createInstanceGroupManager */5], 0, instanceTemplate$1, zone$1, name), Gcloud$LidcoreDraco.Compute[/* Zone */5][/* InstanceGroupManager */3][/* get */1]);
                     }), param);
       });
   };

@@ -89,7 +89,7 @@ module Compute : sig
       val recreateVMs : t -> unit Callback.t
     end
     val instanceGroupManager : t -> string -> InstanceGroupManager.t
-    val createInstanceGroupManager : ?options:'a Js.t -> targetSize:int ->
+    val createInstanceGroupManager : targetSize:int ->
                                      instanceTemplate:InstanceTemplate.t ->
                                      t -> string -> InstanceGroupManager.t Callback.t 
 
