@@ -181,7 +181,8 @@ module Storage : sig
     action:  string;
     contentType: string [@bs.optional];
     expires: float;
-    responseDisposition: string [@bs.optional]
+    responseDisposition: string [@bs.optional];
+    responseType: string [@bs.optional]
   } [@@bs.deriving abstract]
 
   val init : ?config:config -> unit -> t

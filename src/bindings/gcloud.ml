@@ -404,7 +404,8 @@ module Storage = struct
     action:  string;
     contentType: string [@bs.optional];
     expires: float;
-    responseDisposition: string [@bs.optional]
+    responseDisposition: string [@bs.optional];
+    responseType: string [@bs.optional]
   } [@@bs.deriving abstract]
 
   external init : config -> t = "@google-cloud/storage" [@@bs.module]
@@ -438,6 +439,7 @@ module Storage = struct
   external createReadStream : file -> Stream.readable = "" [@@bs.send]
   external createWriteStream : file -> Stream.writable = "" [@@bs.send]
   external getSignedUrl : file -> url_config -> string callback -> unit = "" [@@bs.send]
+
   let getSignedUrl ~config file cb =
     getSignedUrl file config cb
 end
