@@ -27,7 +27,7 @@
     "gcloud"
   ],
   "peerDependencies": {
-    "firebase-tools": "^4.0.3"
+    "firebase-tools": "^5.0.1"
   },
   "devDependencies": {
     "bs-platform": "^4.0.5"
