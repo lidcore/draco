@@ -179,6 +179,7 @@ module Storage : sig
 
   type url_config = {
     action:  string;
+    contentType: string [@bs.optional];
     expires: float;
     responseDisposition: string [@bs.optional]
   } [@@bs.deriving abstract]
