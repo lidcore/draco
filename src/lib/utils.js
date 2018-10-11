@@ -3,7 +3,9 @@
 
 var Block = require("bs-platform/lib/js/block.js");
 var Curry = require("bs-platform/lib/js/curry.js");
+var Js_exn = require("bs-platform/lib/js/js_exn.js");
 var Printf = require("bs-platform/lib/js/printf.js");
+var Printexc = require("bs-platform/lib/js/printexc.js");
 var BsAsyncMonad = require("bs-async-monad/src/bsAsyncMonad.js");
 var Js_primitive = require("bs-platform/lib/js/js_primitive.js");
 var Buffer$LidcoreBsNode = require("@lidcore/bs-node/src/buffer.js");
@@ -99,6 +101,26 @@ function replace_process(cmd, cb) {
             ]);
 }
 
+Printexc.register_printer((function (param) {
+        if (param[0] === Js_exn.$$Error) {
+          return param[1].toString();
+        }
+        
+      }));
+
+function printexc(exn) {
+  try {
+    return exn.toString();
+  }
+  catch (exn$1){
+    if (Array.isArray(exn)) {
+      return Printexc.to_string(exn);
+    } else {
+      return "" + (String(exn) + "");
+    }
+  }
+}
+
 var parse = (function (x) {
     return JSON.parse(x);
   });
@@ -116,7 +138,7 @@ function stringify(obj) {
           Caml_builtin_exceptions.assert_failure,
           /* tuple */[
             "utils.ml",
-            62,
+            79,
             16
           ]
         ];
@@ -134,5 +156,6 @@ exports.partition = partition;
 exports.$$escape = $$escape;
 exports.replace_process = replace_process;
 exports.$$delete = $$delete;
+exports.printexc = printexc;
 exports.Json = Json;
-/* parse Not a pure module */
+/*  Not a pure module */
