@@ -19,7 +19,7 @@ let deploy () =
     Tmp.make ~makeDir:true tmp
   in
 
-  (* Cp current packages for speed *)
+  Logger.info {j|Copying required files, this can take a minute..|j};
   Shell.cp ~options:"-rf"
     {j|$(baseDir)/node_modules|j}
     {j|$(tmpDir)/node_modules|j};
@@ -66,6 +66,8 @@ let deploy () =
 
   (* Add package-lock.json and run npm install *)
   Shell.cp {j|$(baseDir)/package-lock.json|j} {j|$(tmpDir)/package-lock.json|j};
+
+  Logger.info {j|Running npm install|j};
   Shell.exec {j|cd $(tmpDir) && npm install|j};
 
   (* Add DRACO_FIREBASE env var *)
@@ -76,6 +78,7 @@ let deploy () =
   in
 
   (* Deploy! *)
+  Logger.info {j|Deploying..|j};
   let group =
     config##functions##group
   in

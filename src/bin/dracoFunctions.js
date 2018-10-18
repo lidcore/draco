@@ -8,6 +8,7 @@ var Fs$LidcoreBsNode = require("@lidcore/bs-node/src/fs.js");
 var Tmp$LidcoreDraco = require("../bindings/tmp.js");
 var Shell$LidcoreDraco = require("../bindings/shell.js");
 var Utils$LidcoreDraco = require("../lib/utils.js");
+var Logger$LidcoreDraco = require("../lib/logger.js");
 var Deepmerge$LidcoreDraco = require("../bindings/deepmerge.js");
 var DracoCommon$LidcoreDraco = require("./dracoCommon.js");
 
@@ -18,6 +19,7 @@ function deploy() {
   var config = DracoCommon$LidcoreDraco.config(/* () */0);
   var project = config.projectId;
   var tmpDir = Tmp$LidcoreDraco.make(true, undefined, undefined, tmp);
+  Logger$LidcoreDraco.info("Copying required files, this can take a minute..");
   Shell$LidcoreDraco.cp("-rf", "" + (String(DracoCommon$LidcoreDraco.baseDir) + "/node_modules"), "" + (String(tmpDir) + "/node_modules"));
   $$Array.iter((function (file) {
           if (typeof(file) === "string") {
@@ -38,9 +40,11 @@ function deploy() {
   packageJson.dependencies["bs-platform"] = "./bs-platform";
   Fs$LidcoreBsNode.writeFileSync("" + (String(tmpDir) + "/package.json"), Utils$LidcoreDraco.Json[/* stringify */2](packageJson));
   Shell$LidcoreDraco.cp(undefined, "" + (String(DracoCommon$LidcoreDraco.baseDir) + "/package-lock.json"), "" + (String(tmpDir) + "/package-lock.json"));
+  Logger$LidcoreDraco.info("Running npm install");
   Shell$LidcoreDraco.exec("cd " + (String(tmpDir) + " && npm install"));
   Shell$LidcoreDraco.exec("echo \'DRACO_FIREBASE=\"true\"\' >> " + (String(tmpDir) + "/.env"));
   var firebase = "" + (String(DracoCommon$LidcoreDraco.baseDir) + "/node_modules/.bin/firebase");
+  Logger$LidcoreDraco.info("Deploying..");
   var group = config.functions.group;
   var cmd = "cd " + (String(tmpDir) + (" && " + (String(firebase) + (" deploy --only functions:" + (String(group) + (" --project " + (String(project) + "")))))));
   var partial_arg = BsAsyncMonad.Callback[/* >> */3](DracoCommon$LidcoreDraco.rebuild, (function () {
