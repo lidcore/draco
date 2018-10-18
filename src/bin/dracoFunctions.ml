@@ -19,8 +19,8 @@ let deploy () =
     Tmp.make ~makeDir:true tmp
   in
 
-  (* Symlink current packages for speed *)
-  Shell.ln ~options:"-s"
+  (* Cp current packages for speed *)
+  Shell.cp ~options:"-rf"
     {j|$(baseDir)/node_modules|j}
     {j|$(tmpDir)/node_modules|j};
 
@@ -63,6 +63,10 @@ let deploy () =
   Js.Dict.set packageJson##dependencies "bs-platform" "./bs-platform";
   Fs.writeFileSync {j|$(tmpDir)/package.json|j}
     (Utils.Json.stringify packageJson);
+
+  (* Add package-lock.json and run npm install *)
+  Shell.cp {j|$(baseDir)/package-lock.json|j} {j|$(tmpDir)/package-lock.json|j};
+  Shell.exec {j|cd $(tmpDir) && npm install|j};
 
   (* Add DRACO_FIREBASE env var *)
   Shell.exec {j|echo 'DRACO_FIREBASE="true"' >> $(tmpDir)/.env|j};
