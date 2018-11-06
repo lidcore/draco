@@ -4,10 +4,10 @@ open BsAsyncMonad
 
 type fn
 
-(* [true] if the code is running inside the firebase functions environment. *)
+(** [true] if the code is running inside the firebase functions environment. *)
 val running : bool
 
-(* Module to build http-based functions. *)
+(** Module to build http-based functions. *)
 module Http : sig
   type t
 
