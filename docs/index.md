@@ -42,17 +42,3 @@ The npm package `draco` ships with a `draco` command line that is used to build 
 - `draco import`: Import modules from the `LidcoreDraco` namespace. See [Import documentation](import.html)
 - `draco instances`: Manage instance groups. See [Instances documentation](instances.html)
 
-
-```
-% draco import Utils
-Writting src/imports/utils.ml..
-Writting src/imports/utils.mli..
-% cat src/imports/utils.ml
-include LidcoreDraco.Utils
-% cat src/imports/utils.mli
-include module type of LidcoreDraco.Utils
-```
-
-Then you can refer to `Utils` in your code without having to prefix it with `LidcoreDraco` and also extend the module just like a traditional `import` would do.
-
-
