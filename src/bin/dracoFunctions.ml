@@ -19,8 +19,8 @@ let deploy () =
     Tmp.make ~makeDir:true tmp
   in
 
-  (* Symlink current packages for speed *)
-  Shell.ln ~options:"-s"
+  Logger.info {j|Copying required files, this can take a minute..|j};
+  Shell.cp ~options:"-rf"
     {j|$(baseDir)/node_modules|j}
     {j|$(tmpDir)/node_modules|j};
 
@@ -64,6 +64,12 @@ let deploy () =
   Fs.writeFileSync {j|$(tmpDir)/package.json|j}
     (Utils.Json.stringify packageJson);
 
+  (* Add package-lock.json and run npm install *)
+  Shell.cp {j|$(baseDir)/package-lock.json|j} {j|$(tmpDir)/package-lock.json|j};
+
+  Logger.info {j|Running npm install|j};
+  Shell.exec {j|cd $(tmpDir) && npm install|j};
+
   (* Add DRACO_FIREBASE env var *)
   Shell.exec {j|echo 'DRACO_FIREBASE="true"' >> $(tmpDir)/.env|j};
 
@@ -72,6 +78,7 @@ let deploy () =
   in
 
   (* Deploy! *)
+  Logger.info {j|Deploying..|j};
   let group =
     config##functions##group
   in

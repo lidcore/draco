@@ -10,7 +10,8 @@ module Runtime = struct
   } [@@bs.deriving abstract]
 
   type t = [
-    `Subscription of subscription_instance
+    | `Callback of unit -> unit Callback.t
+    | `Subscription of subscription_instance
   ]
 
   let exceptionHandler exn =
@@ -174,6 +175,7 @@ module Runtime = struct
     Queue.push cb initializers
 
   let register label = function
+    | `Callback fn -> Hashtbl.add instances label fn
     | `Subscription handler -> register_subscription label handler
 
   let setup () =

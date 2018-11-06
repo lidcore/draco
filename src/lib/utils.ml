@@ -48,6 +48,23 @@ let replace_process cmd cb =
         | _ -> Callback.fail (Obj.magic e) cb
      end))
 
+external toString : 'a -> string = "" [@@bs.send]
+
+let () =
+  Printexc.register_printer (function
+  | Js.Exn.Error e -> Some (toString e)
+  | _ -> None)
+
+(* This makes sure Utils is loaded and the above is registered. *)
+let printexc exn =
+  try
+    toString exn
+  with _ ->
+    if Js.Array.isArray exn then
+      Printexc.to_string exn
+    else
+      {j|$(exn)|j}
+
 module Json = struct
   let parse : string -> 'a Js.t = [%bs.raw{|function (x) {
     return JSON.parse(x);

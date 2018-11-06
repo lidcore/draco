@@ -89,7 +89,7 @@ module Compute : sig
       val recreateVMs : t -> unit Callback.t
     end
     val instanceGroupManager : t -> string -> InstanceGroupManager.t
-    val createInstanceGroupManager : ?options:'a Js.t -> targetSize:int ->
+    val createInstanceGroupManager : targetSize:int ->
                                      instanceTemplate:InstanceTemplate.t ->
                                      t -> string -> InstanceGroupManager.t Callback.t 
 
@@ -179,8 +179,10 @@ module Storage : sig
 
   type url_config = {
     action:  string;
+    contentType: string [@bs.optional];
     expires: float;
-    responseDisposition: string [@bs.optional]
+    responseDisposition: string [@bs.optional];
+    responseType: string [@bs.optional]
   } [@@bs.deriving abstract]
 
   val init : ?config:config -> unit -> t
