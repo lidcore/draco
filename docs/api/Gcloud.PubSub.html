@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+<link rel="Start" href="index.html">
+<link rel="next" href="Gcloud.Compute.html">
+<link rel="Up" href="Gcloud.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Cuid" rel="Chapter" href="Cuid.html">
+<link title="Deepmerge" rel="Chapter" href="Deepmerge.html">
+<link title="Dotenv" rel="Chapter" href="Dotenv.html">
+<link title="Firebase" rel="Chapter" href="Firebase.html">
+<link title="Gcloud" rel="Chapter" href="Gcloud.html">
+<link title="JsError" rel="Chapter" href="JsError.html">
+<link title="Redis" rel="Chapter" href="Redis.html">
+<link title="RequireAll" rel="Chapter" href="RequireAll.html">
+<link title="Shell" rel="Chapter" href="Shell.html">
+<link title="Spinner" rel="Chapter" href="Spinner.html">
+<link title="Tmp" rel="Chapter" href="Tmp.html">
+<link title="Winston" rel="Chapter" href="Winston.html">
+<link title="Yaml" rel="Chapter" href="Yaml.html">
+<link title="Common" rel="Chapter" href="Common.html">
+<link title="Env" rel="Chapter" href="Env.html">
+<link title="Functions" rel="Chapter" href="Functions.html">
+<link title="Instances" rel="Chapter" href="Instances.html">
+<link title="Logger" rel="Chapter" href="Logger.html">
+<link title="Utils" rel="Chapter" href="Utils.html"><title>Gcloud.PubSub</title>
+</head>
+<body>
+<div class="navbar">&nbsp;<a class="up" href="Gcloud.html" title="Gcloud">Up</a>
+&nbsp;<a class="post" href="Gcloud.Compute.html" title="Gcloud.Compute">Next</a>
+</div>
+<h1>Module <a href="type_Gcloud.PubSub.html">Gcloud.PubSub</a></h1>
+
+<pre><span class="keyword">module</span> PubSub: <code class="code">sig</code> <a href="Gcloud.PubSub.html">..</a> <code class="code">end</code></pre><hr width="100%">
+
+<pre><span id="TYPEt"><span class="keyword">type</span> <code class="type"></code>t</span> </pre>
+
+
+<pre><span id="VALinit"><span class="keyword">val</span> init</span> : <code class="type">?config:<a href="Gcloud.html#TYPEconfig">Gcloud.config</a> -> unit -> <a href="Gcloud.PubSub.html#TYPEt">t</a></code></pre>
+<pre><span id="TYPEtopic"><span class="keyword">type</span> <code class="type"></code>topic</span> </pre>
+
+
+<pre><span id="VALtopic"><span class="keyword">val</span> topic</span> : <code class="type"><a href="Gcloud.PubSub.html#TYPEt">t</a> -> string -> <a href="Gcloud.PubSub.html#TYPEtopic">topic</a> BsAsyncMonad.Callback.t</code></pre>
+<pre><span id="VALpublish"><span class="keyword">val</span> publish</span> : <code class="type"><a href="Gcloud.PubSub.html#TYPEtopic">topic</a> -> string -> unit BsAsyncMonad.Callback.t</code></pre>
+<pre><span id="VALpublishBatch"><span class="keyword">val</span> publishBatch</span> : <code class="type">projectId:string -><br>       topic:string -> string array -> unit BsAsyncMonad.Callback.t</code></pre>
+<pre><span id="TYPEsubscription"><span class="keyword">type</span> <code class="type"></code>subscription</span> </pre>
+
+
+<pre><code><span id="TYPEflow_control"><span class="keyword">type</span> <code class="type"></code>flow_control</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTflow_control.maxBytes">maxBytes</span>&nbsp;: <code class="type">int</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTflow_control.maxMessages">maxMessages</span>&nbsp;: <code class="type">int</code>;</code></td>
+
+</tr></table>
+}
+
+
+
+<pre><code><span id="TYPEsubscription_config"><span class="keyword">type</span> <code class="type"></code>subscription_config</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTsubscription_config.flowControl">flowControl</span>&nbsp;: <code class="type"><a href="Gcloud.PubSub.html#TYPEflow_control">flow_control</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTsubscription_config.maxConnections">maxConnections</span>&nbsp;: <code class="type">int</code>;</code></td>
+
+</tr></table>
+}
+
+
+
+<pre><span id="VALsubscription"><span class="keyword">val</span> subscription</span> : <code class="type">config:<a href="Gcloud.PubSub.html#TYPEsubscription_config">subscription_config</a> -><br>       topic:<a href="Gcloud.PubSub.html#TYPEtopic">topic</a> -><br>       string -> <a href="Gcloud.PubSub.html#TYPEsubscription">subscription</a> BsAsyncMonad.Callback.t</code></pre>
+<pre><code><span id="TYPEmsg"><span class="keyword">type</span> <code class="type"></code>msg</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmsg.id">id</span>&nbsp;: <code class="type">string</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmsg.ackId">ackId</span>&nbsp;: <code class="type">string</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmsg.timestamp">timestamp</span>&nbsp;: <code class="type">string</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTmsg.data">data</span>&nbsp;: <code class="type">LidcoreBsNode.Buffer.t</code>;</code></td>
+
+</tr></table>
+}
+
+
+
+<pre><span id="VALack"><span class="keyword">val</span> ack</span> : <code class="type"><a href="Gcloud.PubSub.html#TYPEmsg">msg</a> -> unit</code></pre>
+<pre><span id="VALnack"><span class="keyword">val</span> nack</span> : <code class="type"><a href="Gcloud.PubSub.html#TYPEmsg">msg</a> -> unit</code></pre>
+<pre><span id="VALsubscribe"><span class="keyword">val</span> subscribe</span> : <code class="type"><a href="Gcloud.PubSub.html#TYPEsubscription">subscription</a> -> (<a href="Gcloud.PubSub.html#TYPEmsg">msg</a> -> unit) -> unit</code></pre></body></html>

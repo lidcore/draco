@@ -1,5 +1,3 @@
-# Welcome to Draco
-
 ## What's Draco?
 
 Draco is a framework to write applications running on the `Google cloud` platform using the
@@ -23,6 +21,27 @@ Draco is based on the following elements:
 - [Dotenv](https://github.com/motdotla/dotenv)
 - [Winston/papertrail](https://github.com/kenperkins/winston-papertrail) (optional)
 
-## More information
+## Getting started
 
-Check out the online documentation at https://develop.lidcore.com/draco/
+```
+% npm init draco /path/to/code
+```
+
+This will initiate a new `draco` project using [create-draco](https://github.com/lidcore/create-draco).
+
+## Basic layout
+
+TODO
+
+## Draco command
+
+The npm package `draco` ships with a `draco` command line that is used to build and setup your project. Here are its main options:
+
+- `draco functions`: Deploy functions code. See [Functions documentation](functions.html)
+- `draco image`: Build instances image. See [Image documentation](image.html)
+- `draco import`: Import modules from the `LidcoreDraco` namespace. See [Import documentation](import.html)
+- `draco instances`: Manage instance groups. See [Instances documentation](instances.html)
+
+## API documentation
+
+See [Api documentation](api)

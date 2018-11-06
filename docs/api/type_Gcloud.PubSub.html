@@ -1,0 +1,60 @@
+<html><head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+<link rel="Start" href="index.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Cuid" rel="Chapter" href="Cuid.html">
+<link title="Deepmerge" rel="Chapter" href="Deepmerge.html">
+<link title="Dotenv" rel="Chapter" href="Dotenv.html">
+<link title="Firebase" rel="Chapter" href="Firebase.html">
+<link title="Gcloud" rel="Chapter" href="Gcloud.html">
+<link title="JsError" rel="Chapter" href="JsError.html">
+<link title="Redis" rel="Chapter" href="Redis.html">
+<link title="RequireAll" rel="Chapter" href="RequireAll.html">
+<link title="Shell" rel="Chapter" href="Shell.html">
+<link title="Spinner" rel="Chapter" href="Spinner.html">
+<link title="Tmp" rel="Chapter" href="Tmp.html">
+<link title="Winston" rel="Chapter" href="Winston.html">
+<link title="Yaml" rel="Chapter" href="Yaml.html">
+<link title="Common" rel="Chapter" href="Common.html">
+<link title="Env" rel="Chapter" href="Env.html">
+<link title="Functions" rel="Chapter" href="Functions.html">
+<link title="Instances" rel="Chapter" href="Instances.html">
+<link title="Logger" rel="Chapter" href="Logger.html">
+<link title="Utils" rel="Chapter" href="Utils.html"><title>Gcloud.PubSub</title>
+</head>
+<body>
+<code class="code"><span class="keyword">sig</span><br>
+&nbsp;&nbsp;<span class="keyword">type</span>&nbsp;t<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;init&nbsp;:&nbsp;?config:<span class="constructor">Gcloud</span>.config&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;unit&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Gcloud</span>.<span class="constructor">PubSub</span>.t<br>
+&nbsp;&nbsp;<span class="keyword">type</span>&nbsp;topic<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;topic&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Gcloud</span>.<span class="constructor">PubSub</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;string&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Gcloud</span>.<span class="constructor">PubSub</span>.topic&nbsp;<span class="constructor">BsAsyncMonad</span>.<span class="constructor">Callback</span>.t<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;publish&nbsp;:&nbsp;<span class="constructor">Gcloud</span>.<span class="constructor">PubSub</span>.topic&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;string&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;unit&nbsp;<span class="constructor">BsAsyncMonad</span>.<span class="constructor">Callback</span>.t<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;publishBatch&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;projectId:string&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;topic:string&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;string&nbsp;array&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;unit&nbsp;<span class="constructor">BsAsyncMonad</span>.<span class="constructor">Callback</span>.t<br>
+&nbsp;&nbsp;<span class="keyword">type</span>&nbsp;subscription<br>
+&nbsp;&nbsp;<span class="keyword">type</span>&nbsp;flow_control&nbsp;=&nbsp;{&nbsp;maxBytes&nbsp;:&nbsp;int;&nbsp;maxMessages&nbsp;:&nbsp;int;&nbsp;}<br>
+&nbsp;&nbsp;<span class="keyword">type</span>&nbsp;subscription_config&nbsp;=&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;flowControl&nbsp;:&nbsp;<span class="constructor">Gcloud</span>.<span class="constructor">PubSub</span>.flow_control;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;maxConnections&nbsp;:&nbsp;int;<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;subscription&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;config:<span class="constructor">Gcloud</span>.<span class="constructor">PubSub</span>.subscription_config&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;topic:<span class="constructor">Gcloud</span>.<span class="constructor">PubSub</span>.topic&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;string&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Gcloud</span>.<span class="constructor">PubSub</span>.subscription&nbsp;<span class="constructor">BsAsyncMonad</span>.<span class="constructor">Callback</span>.t<br>
+&nbsp;&nbsp;<span class="keyword">type</span>&nbsp;msg&nbsp;=&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;id&nbsp;:&nbsp;string;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;ackId&nbsp;:&nbsp;string;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;timestamp&nbsp;:&nbsp;string;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;data&nbsp;:&nbsp;<span class="constructor">LidcoreBsNode</span>.<span class="constructor">Buffer</span>.t;<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;ack&nbsp;:&nbsp;<span class="constructor">Gcloud</span>.<span class="constructor">PubSub</span>.msg&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;unit<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;nack&nbsp;:&nbsp;<span class="constructor">Gcloud</span>.<span class="constructor">PubSub</span>.msg&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;unit<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;subscribe&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Gcloud</span>.<span class="constructor">PubSub</span>.subscription&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;(<span class="constructor">Gcloud</span>.<span class="constructor">PubSub</span>.msg&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;unit)&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;unit<br>
+<span class="keyword">end</span></code></body></html>
