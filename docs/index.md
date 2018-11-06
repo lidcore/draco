@@ -39,7 +39,7 @@ The npm package `draco` ships with a `draco` command line that is used to build 
 
 - `draco functions`: Deploy functions code. See [Functions documentation](functions.html)
 - `draco image`: Build instances image. See [Image documentation](image.html)
-- `draco import`: Import modules from the `Draco` namespace. See [Import documentation](import.html)
+- `draco import`: Import modules from the `LidcoreDraco` namespace. See [Import documentation](import.html)
 - `draco instances`: Manage instance groups. See [Instances documentation](instances.html)
 
 
