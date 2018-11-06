@@ -42,3 +42,6 @@ The npm package `draco` ships with a `draco` command line that is used to build 
 - `draco import`: Import modules from the `LidcoreDraco` namespace. See [Import documentation](import.html)
 - `draco instances`: Manage instance groups. See [Instances documentation](instances.html)
 
+## API documentation
+
+See [Api documentation](api/index.html)

@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+<link rel="Start" href="index.html">
+<link rel="previous" href="Gcloud.Compute.InstanceTemplate.html">
+<link rel="Up" href="Gcloud.Compute.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="DracoCommon" rel="Chapter" href="DracoCommon.html">
+<link title="DracoFunctions" rel="Chapter" href="DracoFunctions.html">
+<link title="DracoImage" rel="Chapter" href="DracoImage.html">
+<link title="DracoImport" rel="Chapter" href="DracoImport.html">
+<link title="DracoInstances" rel="Chapter" href="DracoInstances.html">
+<link title="Cuid" rel="Chapter" href="Cuid.html">
+<link title="Deepmerge" rel="Chapter" href="Deepmerge.html">
+<link title="Dotenv" rel="Chapter" href="Dotenv.html">
+<link title="Firebase" rel="Chapter" href="Firebase.html">
+<link title="Gcloud" rel="Chapter" href="Gcloud.html">
+<link title="JsError" rel="Chapter" href="JsError.html">
+<link title="Redis" rel="Chapter" href="Redis.html">
+<link title="RequireAll" rel="Chapter" href="RequireAll.html">
+<link title="Shell" rel="Chapter" href="Shell.html">
+<link title="Spinner" rel="Chapter" href="Spinner.html">
+<link title="Tmp" rel="Chapter" href="Tmp.html">
+<link title="Winston" rel="Chapter" href="Winston.html">
+<link title="Yaml" rel="Chapter" href="Yaml.html">
+<link title="Common" rel="Chapter" href="Common.html">
+<link title="Env" rel="Chapter" href="Env.html">
+<link title="Functions" rel="Chapter" href="Functions.html">
+<link title="Instances" rel="Chapter" href="Instances.html">
+<link title="Logger" rel="Chapter" href="Logger.html">
+<link title="Utils" rel="Chapter" href="Utils.html"><title>Gcloud.Compute.Zone</title>
+</head>
+<body>
+<div class="navbar"><a class="pre" href="Gcloud.Compute.InstanceTemplate.html" title="Gcloud.Compute.InstanceTemplate">Previous</a>
+&nbsp;<a class="up" href="Gcloud.Compute.html" title="Gcloud.Compute">Up</a>
+&nbsp;</div>
+<h1>Module <a href="type_Gcloud.Compute.Zone.html">Gcloud.Compute.Zone</a></h1>
+
+<pre><span class="keyword">module</span> Zone: <code class="code">sig</code> <a href="Gcloud.Compute.Zone.html">..</a> <code class="code">end</code></pre><hr width="100%">
+
+<pre><span id="TYPEt"><span class="keyword">type</span> <code class="type"></code>t</span> </pre>
+
+
+<pre><span class="keyword">module</span> <a href="Gcloud.Compute.Zone.Autoscaler.html">Autoscaler</a>: <code class="code">sig</code> <a href="Gcloud.Compute.Zone.Autoscaler.html">..</a> <code class="code">end</code></pre>
+<pre><span id="VALautoscaler"><span class="keyword">val</span> autoscaler</span> : <code class="type"><a href="Gcloud.Compute.Zone.html#TYPEt">t</a> -> string -> <a href="Gcloud.Compute.Zone.Autoscaler.html#TYPEt">Autoscaler.t</a></code></pre>
+<pre><span id="VALcreateAutoscaler"><span class="keyword">val</span> createAutoscaler</span> : <code class="type"><a href="Gcloud.Compute.Zone.html#TYPEt">t</a> -><br>       string -> 'a Js.t -> <a href="Gcloud.Compute.Zone.Autoscaler.html#TYPEt">Autoscaler.t</a> BsAsyncMonad.Callback.t</code></pre>
+<pre><span class="keyword">module</span> <a href="Gcloud.Compute.Zone.InstanceGroupManager.html">InstanceGroupManager</a>: <code class="code">sig</code> <a href="Gcloud.Compute.Zone.InstanceGroupManager.html">..</a> <code class="code">end</code></pre>
+<pre><span id="VALinstanceGroupManager"><span class="keyword">val</span> instanceGroupManager</span> : <code class="type"><a href="Gcloud.Compute.Zone.html#TYPEt">t</a> -> string -> <a href="Gcloud.Compute.Zone.InstanceGroupManager.html#TYPEt">InstanceGroupManager.t</a></code></pre>
+<pre><span id="VALcreateInstanceGroupManager"><span class="keyword">val</span> createInstanceGroupManager</span> : <code class="type">?options:'a Js.t -><br>       targetSize:int -><br>       instanceTemplate:<a href="Gcloud.Compute.InstanceTemplate.html#TYPEt">Gcloud.Compute.InstanceTemplate.t</a> -><br>       <a href="Gcloud.Compute.Zone.html#TYPEt">t</a> -><br>       string -> <a href="Gcloud.Compute.Zone.InstanceGroupManager.html#TYPEt">InstanceGroupManager.t</a> BsAsyncMonad.Callback.t</code></pre>
+<pre><span class="keyword">module</span> <a href="Gcloud.Compute.Zone.VM.html">VM</a>: <code class="code">sig</code> <a href="Gcloud.Compute.Zone.VM.html">..</a> <code class="code">end</code></pre>
+<pre><span id="VALvm"><span class="keyword">val</span> vm</span> : <code class="type"><a href="Gcloud.Compute.Zone.html#TYPEt">t</a> -> string -> <a href="Gcloud.Compute.Zone.VM.html#TYPEt">VM.t</a></code></pre></body></html>
