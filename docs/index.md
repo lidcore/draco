@@ -44,4 +44,4 @@ The npm package `draco` ships with a `draco` command line that is used to build 
 
 ## API documentation
 
-See [Api documentation](api/index.html)
+See [Api documentation](api)
