@@ -35,11 +35,13 @@ TODO
 
 ## Draco command
 
-TODO
+The npm package `draco` ships with a `draco` command line that is used to build and setup your project. Here are its main options:
 
-## Import
+- `draco functions`: Deploy functions code. See [Functions documentation](functions.html)
+- `draco image`: Build instances image. See [Image documentation](image.html)
+- `draco import`: Import modules from the `Draco` namespace. See [Import documentation](import.html)
+- `draco instances`: Manage instance groups. See [Instances documentation](instances.html)
 
-A very convenient pattern to use Draco modules is to import them as top-level module in your project. The `draco import` command does just that:
 
 ```
 % draco import Utils
