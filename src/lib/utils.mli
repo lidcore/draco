@@ -1,3 +1,5 @@
+(** Utilities module. *)
+
 open BsAsyncMonad
 open LidcoreBsNode
 

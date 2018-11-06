@@ -1,9 +1,13 @@
+(** Abstract API to create Firebase functions. *)
+
 open BsAsyncMonad
 
 type fn
 
+(* [true] if the code is running inside the firebase functions environment. *)
 val running : bool
 
+(* Module to build http-based functions. *)
 module Http : sig
   type t
 
@@ -28,6 +32,7 @@ module Http : sig
   val export : t -> fn
 end
 
+(** Module to build event-based functions. *)
 module Event : sig
   type handler = unit Callback.t
   val subscribe : string -> ('a Js.t -> handler) -> fn

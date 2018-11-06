@@ -1,3 +1,5 @@
+(** Logging API. *)
+
 val on_info : ('a -> unit) -> unit
 val info    : 'a -> unit
 

@@ -35,7 +35,10 @@
 &nbsp;</div>
 <h1>Module <a href="type_Instances.Config.html">Instances.Config</a></h1>
 
-<pre><span class="keyword">module</span> Config: <code class="code">sig</code> <a href="Instances.Config.html">..</a> <code class="code">end</code></pre><hr width="100%">
+<pre><span class="keyword">module</span> Config: <code class="code">sig</code> <a href="Instances.Config.html">..</a> <code class="code">end</code></pre><div class="info module top">
+Module used internally to configure instance groups.<br>
+</div>
+<hr width="100%">
 
 <pre><span id="VALinitialize"><span class="keyword">val</span> initialize</span> : <code class="type">projectId:string -><br>       serviceAccount:string -><br>       zone:string -><br>       instanceTemplate:'a Js.t -><br>       autoscaler:'b Js.t -> string -> unit BsAsyncMonad.Callback.t</code></pre>
 <pre><span id="VALrestart"><span class="keyword">val</span> restart</span> : <code class="type">projectId:string -> zone:string -> string -> unit BsAsyncMonad.Callback.t</code></pre>
