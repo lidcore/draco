@@ -1,3 +1,5 @@
+(** Binding for the [firebase-functions] module. *)
+
 open LidcoreBsExpress
 
 module Functions : sig

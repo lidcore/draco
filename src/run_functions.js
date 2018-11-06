@@ -5,7 +5,7 @@ var $$Array = require("bs-platform/lib/js/array.js");
 var Js_dict = require("bs-platform/lib/js/js_dict.js");
 var Fs$LidcoreBsNode = require("@lidcore/bs-node/src/fs.js");
 var Shell$LidcoreDraco = require("./bindings/shell.js");
-var DracoCommon$LidcoreDraco = require("./bin/dracoCommon.js");
+var DracoCommon$LidcoreDraco = require("./private/bin/dracoCommon.js");
 
 var functionsDir = "" + (String(__dirname) + "/../../../../src/functions");
 

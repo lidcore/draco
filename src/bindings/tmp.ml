@@ -2,10 +2,16 @@ open BsAsyncMonad
 open BsAsyncMonad.Callback
 open LidcoreBsNode
 
-type params
-external params : ?dir:string -> ?prefix:string -> ?postfix:string -> discardDescriptor:bool -> unit -> params = "" [@@bs.obj]
+type params = {
+  dir:     string [@bs.optional];
+  prefix:  string [@bs.optional];
+  postfix: string [@bs.optional];
+  discardDescriptor: bool
+} [@@bs.deriving abstract]
 
-type tmp = <name: string> Js.t
+type tmp = {
+  name: string
+} [@@bs.deriving abstract]
 
 external fileSync : params -> tmp = "" [@@bs.module "tmp"]
 
@@ -29,7 +35,7 @@ let make ?(makeDir=false) ?prefix ?postfix (dir,queue) =
     else
       fileSync params
   in
-  let path = tmp##name in
+  let path = nameGet tmp in
   Queue.push (makeDir,path) queue;
   path
 

@@ -1,3 +1,5 @@
+(** Binding for the [tmp] module. *)
+
 open BsAsyncMonad
 open LidcoreBsNode
 type t

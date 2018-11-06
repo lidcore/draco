@@ -1,3 +1,5 @@
+(** Binding for the various [gcloud] modules. *)
+
 open BsAsyncMonad
 open LidcoreBsNode
 

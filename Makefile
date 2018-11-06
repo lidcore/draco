@@ -1,6 +1,6 @@
 .PHONY: api-doc
 
-api_doc_files        := $(filter-out src/lib/common%, $(filter-out src/bin/%, $(wildcard src/*/*.mli)))
+api_doc_files        := $(filter-out src/private/%, $(wildcard src/*/*.mli))
 api_doc_dirs         := $(sort $(dir $(api_doc_files)))
 api_include_dirs     := \
 	node_modules/bs-platform/lib/ocaml node_modules/bs-async-monad/lib/ocaml \

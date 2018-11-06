@@ -1,3 +1,5 @@
+(** Binding for the [simple-get] module. *)
+
 open BsAsyncMonad
 open LidcoreBsNode
 

@@ -1,3 +1,5 @@
+(** Binding for the [spinner] module. *)
+
 type t
 val init : string -> t
 val start : t -> unit

@@ -1,3 +1,5 @@
+(** Binding for the [shelljs] module. *)
+
 val cp    : ?options:string -> string -> string -> unit
 val echo  : string -> unit
 val exec  : string -> unit

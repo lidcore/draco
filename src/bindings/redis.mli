@@ -1,3 +1,5 @@
+(** Binding for the [redis] module. *)
+
 open BsAsyncMonad
 
 type t

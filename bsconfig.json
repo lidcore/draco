@@ -5,7 +5,8 @@
     "src",
     "src/bindings",
     "src/lib",
-    "src/bin"
+    "src/private",
+    "src/private/bin"
   ],
   "package-specs": {
     "module": "commonjs",
