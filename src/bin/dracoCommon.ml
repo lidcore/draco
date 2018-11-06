@@ -84,4 +84,3 @@ let () =
 let rebuild =
   Utils.replace_process "npm run clean" >> fun () ->
     Utils.replace_process "npm run build"
-
