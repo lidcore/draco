@@ -95,12 +95,6 @@ let data ?failOnClientError ?headers url =
   Stream.read resp##data
   >> fun data -> return [%bs.obj {statusCode= resp##statusCode; data}]
 
-let to_tmp ?failOnClientError ?headers ?prefix ?postfix ~tmp url =
-  stream ?failOnClientError ?headers url
-  >> fun resp ->
-  Tmp.to_tmp ?prefix ?postfix tmp resp##data
-  >> fun tmp -> return [%bs.obj {statusCode= resp##statusCode; data= tmp}]
-
 external post : get -> opts -> Stream.readable Callback.callback -> unit = ""
   [@@bs.send]
 
