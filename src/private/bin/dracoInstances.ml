@@ -13,7 +13,7 @@ let () =
 external __dirname : string = "" [@@bs.val]
 
 let instancesDir =
-  {j|$(__dirname)/../../../../../src/instances|j}
+  {j|$(__dirname)/../../../../../../src/instances|j}
 
 (* Require all instances. Will create all required subscriptions. *)
 let () =

@@ -30,14 +30,14 @@ let usage ?(staged=true) opts =
 external __dirname : string = "" [@@bs.val]
 
 let baseDir =
-  Path.normalize {j|$(__dirname)/../../../../..|j}
+  Path.normalize {j|$(__dirname)/../../../../../..|j}
 
 let configPath =
   let stage = !stage in
   {j|$(baseDir)/config/$(stage)/draco.yml|j}
 
 let getPath file =
-  Fs.realpathSync {j|$(__dirname)/../../$(file)|j}
+  Fs.realpathSync {j|$(__dirname)/../../../$(file)|j}
 
 let defaultConfigPath =
   getPath "config.yml"

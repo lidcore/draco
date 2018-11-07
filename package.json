@@ -9,11 +9,11 @@
     "clean": "bsb -clean-world"
   },
   "bin": {
-    "draco": "./src/bin/draco",
-    "draco-image": "./src/bin/draco-image",
-    "draco-import": "./src/bin/draco-import",
-    "draco-instances": "./src/bin/draco-instances",
-    "draco-functions": "./src/bin/draco-functions"
+    "draco": "./src/private/bin/draco",
+    "draco-image": "./src/private/bin/draco-image",
+    "draco-import": "./src/private/bin/draco-import",
+    "draco-instances": "./src/private/bin/draco-instances",
+    "draco-functions": "./src/private/bin/draco-functions"
   },
   "repository": {
     "type": "git",
