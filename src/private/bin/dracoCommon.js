@@ -50,14 +50,14 @@ function usage($staropt$star, opts) {
   return /* () */0;
 }
 
-var baseDir = Path$LidcoreBsNode.normalize("" + (String(__dirname) + "/../../../../.."));
+var baseDir = Path$LidcoreBsNode.normalize("" + (String(__dirname) + "/../../../../../.."));
 
 var stage$1 = stage[0];
 
 var configPath = "" + (String(baseDir) + ("/config/" + (String(stage$1) + "/draco.yml")));
 
 function getPath(file) {
-  return Fs$LidcoreBsNode.realpathSync("" + (String(__dirname) + ("/../../" + (String(file) + ""))));
+  return Fs$LidcoreBsNode.realpathSync("" + (String(__dirname) + ("/../../../" + (String(file) + ""))));
 }
 
 var defaultConfigPath = getPath("config.yml");

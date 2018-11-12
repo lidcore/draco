@@ -1,6 +1,7 @@
 (** Abstract API to create Firebase functions. *)
 
 open BsAsyncMonad
+open LidcoreBsNode
 
 type fn
 
@@ -12,15 +13,22 @@ module Http : sig
   type t
 
   type request
+
+  type response_body = [
+    | `String of string
+    | `Json of Js.Json.t
+    | `Stream of Stream.readable
+  ]
+
   type response
   type handler = request -> response Callback.t
 
-  val body   : request -> 'a Js.t
+  val body   : request -> 'a
   val param  : request -> string -> string option
-  val params : request -> 'a Js.t
+  val params : request -> string Js.Dict.t
   val query  : request -> string -> string option
 
-  val response : ?code:int -> ?headers:(string, string) Hashtbl.t -> 'a -> response Callback.t
+  val response : ?code:int -> ?headers:(string, string) Hashtbl.t -> response_body -> response
   val error    :  code:int -> string  -> 'a Callback.t
 
   val init : unit -> t

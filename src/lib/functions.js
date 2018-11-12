@@ -83,7 +83,10 @@ function make_response(prim, prim$1, prim$2, _) {
 function make_error(code, body) {
   return [
           $$Error,
-          make_response(code, undefined, body, /* () */0)
+          make_response(code, undefined, /* `String */[
+                -976970511,
+                body
+              ], /* () */0)
         ];
 }
 
@@ -95,7 +98,7 @@ function error(code, msg) {
     });
 }
 
-function response($staropt$star, headers, msg) {
+function response($staropt$star, headers, body) {
   var code = $staropt$star !== undefined ? $staropt$star : 200;
   var headers$1;
   if (headers !== undefined) {
@@ -108,20 +111,7 @@ function response($staropt$star, headers, msg) {
   } else {
     headers$1 = undefined;
   }
-  var match = JSON.stringify(msg);
-  if (match !== undefined) {
-    var partial_arg = make_response(code, headers$1, match, /* () */0);
-    var partial_arg$1 = BsAsyncMonad.Callback[/* return */0];
-    return (function (param) {
-        return partial_arg$1(partial_arg, param);
-      });
-  } else {
-    var partial_arg$2 = make_error(500, "Invalid message!");
-    var partial_arg$3 = BsAsyncMonad.Callback[/* fail */1];
-    return (function (param) {
-        return partial_arg$3(partial_arg$2, param);
-      });
-  }
+  return make_response(code, headers$1, body, /* () */0);
 }
 
 function authenticate(req) {
@@ -182,7 +172,10 @@ function add_route(meth, $staropt$star, app, route, handler) {
                             var cb = param;
                             var partial_arg$1 = {
                               code: 500,
-                              body: "Internal server error"
+                              body: /* `String */[
+                                -976970511,
+                                "Internal server error"
+                              ]
                             };
                             var partial_arg$2 = BsAsyncMonad.Callback[/* return */0];
                             var error = function (param) {
@@ -201,17 +194,30 @@ function add_route(meth, $staropt$star, app, route, handler) {
                                 var ret$1 = ret;
                                 var resp$1 = resp;
                                 var code = ret$1.code;
-                                var body = ret$1.body;
                                 var match = ret$1.headers;
                                 var headers = match !== undefined ? match : { };
-                                Express$LidcoreBsExpress.Response[/* send */5](Express$LidcoreBsExpress.Response[/* headers */7](Express$LidcoreBsExpress.Response[/* status */9](resp$1, code), headers), body);
-                                return /* () */0;
+                                var send_string = function (msg) {
+                                  Express$LidcoreBsExpress.Response[/* send */5](Express$LidcoreBsExpress.Response[/* headers */7](Express$LidcoreBsExpress.Response[/* status */9](resp$1, code), headers), msg);
+                                  return /* () */0;
+                                };
+                                var match$1 = ret$1.body;
+                                var variant = match$1[0];
+                                if (variant !== -976970511) {
+                                  if (variant >= 826371656) {
+                                    return send_string(JSON.stringify(match$1[1]));
+                                  } else {
+                                    headers["Transfer-Encoding"] = "chunked";
+                                    return Express$LidcoreBsExpress.Response[/* writeHead */10](Express$LidcoreBsExpress.Response[/* pipe */4](match$1[1], resp$1), Js_primitive.some(headers), code);
+                                  }
+                                } else {
+                                  return send_string(match$1[1]);
+                                }
                               } else {
                                 throw [
                                       Caml_builtin_exceptions.assert_failure,
                                       /* tuple */[
                                         "functions.ml",
-                                        141,
+                                        154,
                                         22
                                       ]
                                     ];

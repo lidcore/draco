@@ -34,7 +34,7 @@ var jsMapperConstantArray = /* array */[
 
 DracoCommon$LidcoreDraco.usage(undefined, "instances [create|restart|destroy] [instance-group-name1,instance-group-name2,..]");
 
-var instancesDir = "" + (String(__dirname) + "/../../../../../src/instances");
+var instancesDir = "" + (String(__dirname) + "/../../../../../../src/instances");
 
 if (Fs$LidcoreBsNode.existsSync(instancesDir)) {
   RequireAll$LidcoreDraco.exec(instancesDir);

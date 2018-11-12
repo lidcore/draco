@@ -1,4 +1,5 @@
 open LidcoreBsExpress
+open LidcoreBsNode
 open BsAsyncMonad
 open BsAsyncMonad.Callback
 
@@ -27,17 +28,23 @@ module Http = struct
 
   type request = Express.Request.t
 
+  type response_body = [
+    | `String of string
+    | `Json of Js.Json.t
+    | `Stream of Stream.readable
+  ]
+
   type response = {
     code:    int;
     headers: string Js.Dict.t [@bs.optional];
-    body:    string
+    body:    response_body
   } [@@bs.deriving abstract]
 
   let init = Express.init ~useCors:true
 
   let param req lbl =
     Js.Dict.get (Express.Request.params req) lbl
-  let params req = Obj.magic (Express.Request.params req)
+  let params req = Express.Request.params req
   let body req = Obj.magic (Express.Request.body req)
   let query req = Js.Dict.get (Express.Request.query req)
 
@@ -48,12 +55,12 @@ module Http = struct
   let make_response = response
 
   let make_error ~code body =
-    Error (make_response ~code ~body ())
+    Error (make_response ~code ~body:(`String body) ())
 
   let error ~code msg =
     Callback.fail (make_error ~code msg)
 
-  let response ?(code=200) ?headers msg =
+  let response ?(code=200) ?headers body =
     let headers =
       match headers with  
         | None -> None
@@ -62,16 +69,12 @@ module Http = struct
             Hashtbl.iter (Js.Dict.set headers) h;
             Some headers
     in
-    match Js.Json.stringifyAny msg with
-      | Some body ->
-          return (make_response ~code:code ?headers ~body ())
-      | None ->
-          Callback.fail (make_error ~code:500 "Invalid message!")
+    make_response ~code:code ?headers ~body ()
 
   let wrap handler cb =
     let error =
       return
-        (make_response ~code:500 ~body:"Internal server error" ())
+        (make_response ~code:500 ~body:(`String "Internal server error") ())
     in
     let cb = wrap ~error cb in
     let cb = fun [@bs] err ret ->
@@ -106,15 +109,25 @@ module Http = struct
 
   let send_response ~ret resp =
     let code = codeGet ret in
-    let body = bodyGet ret in
     let headers =
       match headersGet ret with
         | Some headers -> headers
         | None -> Js.Dict.empty ()
     in
-    ignore(resp |. Express.Response.status code |.
-            Express.Response.headers headers |.
-            Express.Response.send body)
+    let send_string msg =
+      ignore(resp |. Express.Response.status code |.
+              Express.Response.headers headers |.
+              Express.Response.send msg)
+    in
+    match bodyGet ret with
+      | `String string ->
+          send_string string
+      | `Json json ->
+          send_string (Js.Json.stringify json)
+      | `Stream stream ->
+          Js.Dict.set headers "Transfer-Encoding" "chunked";
+          Express.Response.pipe stream resp |.
+            Express.Response.writeHead ~headers code
 
   let add_route meth ?(auth=false) app route handler =
     let meth, fn =
