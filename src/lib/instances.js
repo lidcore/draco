@@ -18,6 +18,7 @@ var Config$LidcoreDraco = require("../config.js");
 var Gcloud$LidcoreDraco = require("../bindings/gcloud.js");
 var Logger$LidcoreDraco = require("./logger.js");
 var Process$LidcoreBsNode = require("@lidcore/bs-node/src/process.js");
+var Caml_builtin_exceptions = require("bs-platform/lib/js/caml_builtin_exceptions.js");
 
 function exceptionHandler(exn) {
   return Curry._1(Config$LidcoreDraco.error_handler[0], exn);
@@ -36,8 +37,21 @@ function run() {
                           }), items);
                     var label = data.value;
                     Logger$LidcoreDraco.info("Starting instance " + (String(label) + ""));
-                    var handler = Hashtbl.find(instances, label);
-                    return Curry._1(handler, /* () */0);
+                    try {
+                      var handler = Hashtbl.find(instances, label);
+                      return Curry._1(handler, /* () */0);
+                    }
+                    catch (exn){
+                      if (exn === Caml_builtin_exceptions.not_found) {
+                        Logger$LidcoreDraco.error("Could not find handler for instance " + (String(label) + "!"));
+                        var partial_arg = BsAsyncMonad.Callback[/* return */0];
+                        return (function (param) {
+                            return partial_arg(/* () */0, param);
+                          });
+                      } else {
+                        throw exn;
+                      }
+                    }
                   })));
 }
 

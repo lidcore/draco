@@ -38,8 +38,12 @@ module Runtime = struct
         VM.valueGet data
       in
       Logger.info {j|Starting instance $(label)|j};
-      let handler = Hashtbl.find instances label in
-      handler ())
+      try
+        let handler = Hashtbl.find instances label in
+        handler ()
+      with Not_found ->
+        Logger.error {j|Could not find handler for instance $(label)!|j};
+        return ())
   
   let stopping = ref false
   let () =
