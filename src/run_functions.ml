@@ -11,12 +11,17 @@ external exports : group Js.Dict.t = "" [@@bs.val] [@@bs.scope "module"]
 let functionsDir =
   {j|$(__dirname)/../../../../src/functions|j}
 
+let initDir =
+  {j|$(__dirname)/../../../../src/init|j}
+
 let group = Js.Dict.empty ()
 
 let () =
   let config =
     DracoCommon.config ()
   in
+  if Fs.existsSync initDir then
+    RequireAll.exec initDir;
   if Fs.existsSync functionsDir then
     Array.iter (fun file ->
       Array.iter (fun (lbl,fn) ->

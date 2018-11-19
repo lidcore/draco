@@ -5,13 +5,20 @@ var $$Array = require("bs-platform/lib/js/array.js");
 var Js_dict = require("bs-platform/lib/js/js_dict.js");
 var Fs$LidcoreBsNode = require("@lidcore/bs-node/src/fs.js");
 var Shell$LidcoreDraco = require("./bindings/shell.js");
+var RequireAll$LidcoreDraco = require("./bindings/requireAll.js");
 var DracoCommon$LidcoreDraco = require("./private/bin/dracoCommon.js");
 
 var functionsDir = "" + (String(__dirname) + "/../../../../src/functions");
 
+var initDir = "" + (String(__dirname) + "/../../../../src/init");
+
 var group = { };
 
 var config = DracoCommon$LidcoreDraco.config(/* () */0);
+
+if (Fs$LidcoreBsNode.existsSync(initDir)) {
+  RequireAll$LidcoreDraco.exec(initDir);
+}
 
 if (Fs$LidcoreBsNode.existsSync(functionsDir)) {
   $$Array.iter((function (file) {

@@ -7,6 +7,12 @@ var RequireAll$LidcoreDraco = require("./bindings/requireAll.js");
 
 var instancesDir = "" + (String(__dirname) + "/../../../../src/instances");
 
+var initDir = "" + (String(__dirname) + "/../../../../src/init");
+
+if (Fs$LidcoreBsNode.existsSync(initDir)) {
+  RequireAll$LidcoreDraco.exec(initDir);
+}
+
 if (Fs$LidcoreBsNode.existsSync(instancesDir)) {
   RequireAll$LidcoreDraco.exec(instancesDir);
 }
