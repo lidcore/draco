@@ -176,22 +176,31 @@ end
 
 module Storage : sig
   type t
-  type bucket
-  type file
 
-  type url_config = {
-    action:  string;
-    contentType: string [@bs.optional];
-    expires: float;
-    responseDisposition: string [@bs.optional];
-    responseType: string [@bs.optional]
-  } [@@bs.deriving abstract]
+  module File : sig
+    type t
+
+    type url_config = {
+      action:  string;
+      contentType: string [@bs.optional];
+      expires: float;
+      responseDisposition: string [@bs.optional];
+      responseType: string [@bs.optional]
+    } [@@bs.deriving abstract]
+
+    val exists : t -> bool Callback.t
+    val createReadStream : t -> Stream.readable
+    val createWriteStream : t -> Stream.writable
+    val getSignedUrl : config:url_config -> t -> string Callback.t
+  end
+
+  module Bucket : sig
+    type t
+    val exists : t -> bool Callback.t
+    val create : t -> unit Callback.t
+    val file : t -> string -> File.t
+  end
 
   val init : ?config:config -> unit -> t
-  val bucket : t -> string -> bucket
-  val file : bucket -> string -> file
-  val exists : file -> bool Callback.t
-  val createReadStream : file -> Stream.readable
-  val createWriteStream : file -> Stream.writable
-  val getSignedUrl : config:url_config -> file -> string Callback.t
+  val bucket : t -> string -> Bucket.t
 end

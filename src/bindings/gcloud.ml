@@ -397,16 +397,34 @@ end
 
 module Storage = struct
   type t
-  type bucket
-  type file
+ 
+  module File = struct
+    type t
 
-  type url_config = {
-    action:  string;
-    contentType: string [@bs.optional];
-    expires: float;
-    responseDisposition: string [@bs.optional];
-    responseType: string [@bs.optional]
-  } [@@bs.deriving abstract]
+    type url_config = {
+      action:  string;
+      contentType: string [@bs.optional];
+      expires: float;
+      responseDisposition: string [@bs.optional];
+      responseType: string [@bs.optional]
+    } [@@bs.deriving abstract]
+
+    external exists : t -> bool callback -> unit = "" [@@bs.send]
+    external createReadStream : t -> Stream.readable = "" [@@bs.send]
+    external createWriteStream : t -> Stream.writable = "" [@@bs.send]
+    external getSignedUrl : t -> url_config -> string callback -> unit = "" [@@bs.send]
+
+    let getSignedUrl ~config file cb =
+      getSignedUrl file config cb
+  end
+
+  module Bucket = struct
+    type t
+
+    external exists : t -> bool callback -> unit = "" [@@bs.send]
+    external create : t -> unit callback -> unit = "" [@@bs.send]
+    external file : t -> string -> File.t = "" [@@bs.send]
+  end
 
   external init : config -> t = "@google-cloud/storage" [@@bs.module]
 
@@ -433,13 +451,5 @@ module Storage = struct
     ignore(Js.Array.push interceptor (interceptors gcs));
     gcs
 
-  external bucket : t -> string -> bucket = "" [@@bs.send]
-  external file : bucket -> string -> file = "" [@@bs.send]
-  external exists : file -> bool callback -> unit = "" [@@bs.send]
-  external createReadStream : file -> Stream.readable = "" [@@bs.send]
-  external createWriteStream : file -> Stream.writable = "" [@@bs.send]
-  external getSignedUrl : file -> url_config -> string callback -> unit = "" [@@bs.send]
-
-  let getSignedUrl ~config file cb =
-    getSignedUrl file config cb
+  external bucket : t -> string -> Bucket.t = "" [@@bs.send]
 end

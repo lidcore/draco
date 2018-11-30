@@ -397,6 +397,11 @@ function cleanup_collection(db, c) {
               }));
 }
 
+function getSignedUrl(config, file, cb) {
+  file.getSignedUrl(config, cb);
+  return /* () */0;
+}
+
 function init$3($staropt$star, _) {
   var config = $staropt$star !== undefined ? Js_primitive.valFromOption($staropt$star) : default_config;
   var gcs = Storage(config);
@@ -409,11 +414,6 @@ function init$3($staropt$star, _) {
   };
   gcs.interceptors.push(interceptor);
   return gcs;
-}
-
-function getSignedUrl(config, file, cb) {
-  file.getSignedUrl(config, cb);
-  return /* () */0;
 }
 
 function PubSub_005(prim) {
@@ -566,35 +566,43 @@ var Firestore$1 = [
   cleanup_collection
 ];
 
-function Storage_001(prim, prim$1) {
+var Storage_000 = [
+  (function (prim, prim$1) {
+      prim.exists(prim$1);
+      return /* () */0;
+    }),
+  (function (prim) {
+      return prim.createReadStream();
+    }),
+  (function (prim) {
+      return prim.createWriteStream();
+    }),
+  getSignedUrl
+];
+
+var Storage_001 = [
+  (function (prim, prim$1) {
+      prim.exists(prim$1);
+      return /* () */0;
+    }),
+  (function (prim, prim$1) {
+      prim.create(prim$1);
+      return /* () */0;
+    }),
+  (function (prim, prim$1) {
+      return prim.file(prim$1);
+    })
+];
+
+function Storage_003(prim, prim$1) {
   return prim.bucket(prim$1);
 }
 
-function Storage_002(prim, prim$1) {
-  return prim.file(prim$1);
-}
-
-function Storage_003(prim, prim$1) {
-  prim.exists(prim$1);
-  return /* () */0;
-}
-
-function Storage_004(prim) {
-  return prim.createReadStream();
-}
-
-function Storage_005(prim) {
-  return prim.createWriteStream();
-}
-
 var Storage$1 = [
-  init$3,
+  Storage_000,
   Storage_001,
-  Storage_002,
-  Storage_003,
-  Storage_004,
-  Storage_005,
-  getSignedUrl
+  init$3,
+  Storage_003
 ];
 
 exports.project = project;
