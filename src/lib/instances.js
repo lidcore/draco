@@ -20,9 +20,7 @@ var Logger$LidcoreDraco = require("./logger.js");
 var Process$LidcoreBsNode = require("@lidcore/bs-node/src/process.js");
 var Caml_builtin_exceptions = require("bs-platform/lib/js/caml_builtin_exceptions.js");
 
-function exceptionHandler(exn) {
-  return Curry._1(Config$LidcoreDraco.error_handler[0], exn);
-}
+var exceptionHandler = Config$LidcoreDraco.error_handler;
 
 var instances = Hashtbl.create(undefined, 10);
 
@@ -145,7 +143,7 @@ function register(label, param) {
       };
       var requeue$1 = function (msg) {
         return BsAsyncMonad.Callback[/* ||> */5](requeue(msg), (function (exn) {
-                      Curry._1(Config$LidcoreDraco.error_handler[0], exn);
+                      Config$LidcoreDraco.error_handler(exn);
                       var partial_arg = BsAsyncMonad.Callback[/* return */0];
                       return (function (param) {
                           return partial_arg(/* () */0, param);

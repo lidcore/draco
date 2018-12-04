@@ -26,7 +26,7 @@ function wrap(error, cb) {
       if (err == null) {
         return cb(err, ret);
       } else if (err[0] === Js_exn.$$Error) {
-        Curry._1(Config$LidcoreDraco.error_handler[0], err[1]);
+        Config$LidcoreDraco.error_handler(err[1]);
         return Curry._1(error, cb);
       } else {
         var e;
@@ -36,7 +36,7 @@ function wrap(error, cb) {
         catch (exn){
           e = err;
         }
-        Curry._1(Config$LidcoreDraco.error_handler[0], e);
+        Config$LidcoreDraco.error_handler(e);
         return Curry._1(error, cb);
       }
     });

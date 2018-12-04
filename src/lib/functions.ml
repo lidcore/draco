@@ -10,7 +10,7 @@ let running = Firebase.Functions.running
 let wrap ~error cb = fun [@bs] err ret ->
   match Js.toOption err with
     | Some (Js.Exn.Error e) ->
-        !Config.error_handler e;
+        Config.error_handler e;
         error cb
     | Some exn ->
         let e =
@@ -18,7 +18,7 @@ let wrap ~error cb = fun [@bs] err ret ->
             JsError.make (Printexc.to_string exn)
           with _ -> Obj.magic exn
         in
-        !Config.error_handler e;
+        Config.error_handler e;
         error cb
     | None ->
         cb err ret [@bs]

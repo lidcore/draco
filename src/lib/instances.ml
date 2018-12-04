@@ -15,7 +15,7 @@ module Runtime = struct
   ]
 
   let exceptionHandler exn =
-    !Config.error_handler (Obj.magic exn)
+    Config.error_handler (Obj.magic exn)
 
   let instances = Hashtbl.create 10
   let initializers = Queue.create ()
