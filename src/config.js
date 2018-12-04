@@ -24,10 +24,7 @@ var error_handler = /* record */[/* contents */(function (exn) {
     })];
 
 function set_error_handler(fn) {
-  error_handler[0] = (function (exn) {
-      Logger$LidcoreDraco.error("Error: " + (String(exn) + ""));
-      return Curry._1(fn, exn);
-    });
+  error_handler[0] = fn;
   return /* () */0;
 }
 
