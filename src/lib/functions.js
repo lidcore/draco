@@ -2,11 +2,9 @@
 'use strict';
 
 var Curry = require("bs-platform/lib/js/curry.js");
-var Js_exn = require("bs-platform/lib/js/js_exn.js");
 var Hashtbl = require("bs-platform/lib/js/hashtbl.js");
 var Js_dict = require("bs-platform/lib/js/js_dict.js");
 var Caml_obj = require("bs-platform/lib/js/caml_obj.js");
-var Printexc = require("bs-platform/lib/js/printexc.js");
 var Caml_array = require("bs-platform/lib/js/caml_array.js");
 var Caml_option = require("bs-platform/lib/js/caml_option.js");
 var BsAsyncMonad = require("bs-async-monad/src/bsAsyncMonad.js");
@@ -15,7 +13,6 @@ var Env$LidcoreDraco = require("./env.js");
 var Common$LidcoreDraco = require("../private/common.js");
 var Config$LidcoreDraco = require("../config.js");
 var Logger$LidcoreDraco = require("./logger.js");
-var JsError$LidcoreDraco = require("../bindings/jsError.js");
 var Firebase$LidcoreDraco = require("../bindings/firebase.js");
 var Caml_builtin_exceptions = require("bs-platform/lib/js/caml_builtin_exceptions.js");
 var Express$LidcoreBsExpress = require("@lidcore/bs-express/src/express.js");
@@ -26,18 +23,8 @@ function wrap(error, cb) {
   return (function (err, ret) {
       if (err == null) {
         return cb(err, ret);
-      } else if (err[0] === Js_exn.$$Error) {
-        Config$LidcoreDraco.error_handler(err[1]);
-        return Curry._1(error, cb);
       } else {
-        var e;
-        try {
-          e = JsError$LidcoreDraco.make(Printexc.to_string(err));
-        }
-        catch (exn){
-          e = err;
-        }
-        Config$LidcoreDraco.error_handler(e);
+        Config$LidcoreDraco.error_handler(err);
         return Curry._1(error, cb);
       }
     });
@@ -218,7 +205,7 @@ function add_route(meth, $staropt$star, app, route, handler) {
                                       Caml_builtin_exceptions.assert_failure,
                                       /* tuple */[
                                         "functions.ml",
-                                        154,
+                                        146,
                                         22
                                       ]
                                     ];
