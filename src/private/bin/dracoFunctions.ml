@@ -86,8 +86,7 @@ let deploy () =
     {j|cd $(tmpDir) && $(firebase) deploy --only functions:$(group) --project $(project)|j}
   in
   Callback.finish
-    ((rebuild >> fun () ->
-      Utils.replace_process cmd) |&> fun () ->
+    ((Utils.replace_process cmd) |&> fun () ->
         Tmp.cleanup tmp)
 
 let () =
