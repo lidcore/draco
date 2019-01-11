@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+<link rel="Start" href="index.html">
+<link rel="next" href="Gcloud.Storage.Bucket.html">
+<link rel="Up" href="Gcloud.Storage.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Cuid" rel="Chapter" href="Cuid.html">
+<link title="Deepmerge" rel="Chapter" href="Deepmerge.html">
+<link title="Dotenv" rel="Chapter" href="Dotenv.html">
+<link title="Env" rel="Chapter" href="Env.html">
+<link title="Firebase" rel="Chapter" href="Firebase.html">
+<link title="Functions" rel="Chapter" href="Functions.html">
+<link title="Gcloud" rel="Chapter" href="Gcloud.html">
+<link title="Get" rel="Chapter" href="Get.html">
+<link title="Instances" rel="Chapter" href="Instances.html">
+<link title="JsError" rel="Chapter" href="JsError.html">
+<link title="Logger" rel="Chapter" href="Logger.html">
+<link title="Redis" rel="Chapter" href="Redis.html">
+<link title="RequireAll" rel="Chapter" href="RequireAll.html">
+<link title="Shell" rel="Chapter" href="Shell.html">
+<link title="Spinner" rel="Chapter" href="Spinner.html">
+<link title="Tmp" rel="Chapter" href="Tmp.html">
+<link title="Utils" rel="Chapter" href="Utils.html">
+<link title="Yaml" rel="Chapter" href="Yaml.html"><title>Gcloud.Storage.File</title>
+</head>
+<body>
+<div class="navbar">&nbsp;<a class="up" href="Gcloud.Storage.html" title="Gcloud.Storage">Up</a>
+&nbsp;<a class="post" href="Gcloud.Storage.Bucket.html" title="Gcloud.Storage.Bucket">Next</a>
+</div>
+<h1>Module <a href="type_Gcloud.Storage.File.html">Gcloud.Storage.File</a></h1>
+
+<pre><span class="keyword">module</span> File: <code class="code">sig</code> <a href="Gcloud.Storage.File.html">..</a> <code class="code">end</code></pre><hr width="100%">
+
+<pre><span id="TYPEt"><span class="keyword">type</span> <code class="type"></code>t</span> </pre>
+
+
+<pre><code><span id="TYPEurl_config"><span class="keyword">type</span> <code class="type"></code>url_config</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTurl_config.action">action</span>&nbsp;: <code class="type">string</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTurl_config.contentType">contentType</span>&nbsp;: <code class="type">string</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTurl_config.expires">expires</span>&nbsp;: <code class="type">float</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTurl_config.responseDisposition">responseDisposition</span>&nbsp;: <code class="type">string</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTurl_config.responseType">responseType</span>&nbsp;: <code class="type">string</code>;</code></td>
+
+</tr></table>
+}
+
+
+
+<pre><span id="VALexists"><span class="keyword">val</span> exists</span> : <code class="type"><a href="Gcloud.Storage.File.html#TYPEt">t</a> -> bool BsAsyncMonad.Callback.t</code></pre>
+<pre><span id="VALcreateReadStream"><span class="keyword">val</span> createReadStream</span> : <code class="type"><a href="Gcloud.Storage.File.html#TYPEt">t</a> -> LidcoreBsNode.Stream.readable</code></pre>
+<pre><span id="VALcreateWriteStream"><span class="keyword">val</span> createWriteStream</span> : <code class="type"><a href="Gcloud.Storage.File.html#TYPEt">t</a> -> LidcoreBsNode.Stream.writable</code></pre>
+<pre><span id="VALgetSignedUrl"><span class="keyword">val</span> getSignedUrl</span> : <code class="type">config:<a href="Gcloud.Storage.File.html#TYPEurl_config">url_config</a> -><br>       <a href="Gcloud.Storage.File.html#TYPEt">t</a> -> string BsAsyncMonad.Callback.t</code></pre></body></html>

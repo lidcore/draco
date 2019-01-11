@@ -46,17 +46,20 @@ Module to build http-based functions.<br>
 <pre><span id="TYPErequest"><span class="keyword">type</span> <code class="type"></code>request</span> </pre>
 
 
+<pre><span id="TYPEresponse_body"><span class="keyword">type</span> <code class="type"></code>response_body</span> = <code class="type">[ `Json of Js.Json.t<br>       | `Stream of LidcoreBsNode.Stream.readable<br>       | `String of string ]</code> </pre>
+
+
 <pre><span id="TYPEresponse"><span class="keyword">type</span> <code class="type"></code>response</span> </pre>
 
 
 <pre><span id="TYPEhandler"><span class="keyword">type</span> <code class="type"></code>handler</span> = <code class="type"><a href="Functions.Http.html#TYPErequest">request</a> -> <a href="Functions.Http.html#TYPEresponse">response</a> BsAsyncMonad.Callback.t</code> </pre>
 
 
-<pre><span id="VALbody"><span class="keyword">val</span> body</span> : <code class="type"><a href="Functions.Http.html#TYPErequest">request</a> -> 'a Js.t</code></pre>
+<pre><span id="VALbody"><span class="keyword">val</span> body</span> : <code class="type"><a href="Functions.Http.html#TYPErequest">request</a> -> 'a</code></pre>
 <pre><span id="VALparam"><span class="keyword">val</span> param</span> : <code class="type"><a href="Functions.Http.html#TYPErequest">request</a> -> string -> string option</code></pre>
-<pre><span id="VALparams"><span class="keyword">val</span> params</span> : <code class="type"><a href="Functions.Http.html#TYPErequest">request</a> -> 'a Js.t</code></pre>
+<pre><span id="VALparams"><span class="keyword">val</span> params</span> : <code class="type"><a href="Functions.Http.html#TYPErequest">request</a> -> string Js.Dict.t</code></pre>
 <pre><span id="VALquery"><span class="keyword">val</span> query</span> : <code class="type"><a href="Functions.Http.html#TYPErequest">request</a> -> string -> string option</code></pre>
-<pre><span id="VALresponse"><span class="keyword">val</span> response</span> : <code class="type">?code:int -><br>       ?headers:(string, string) Hashtbl.t -><br>       'a -> <a href="Functions.Http.html#TYPEresponse">response</a> BsAsyncMonad.Callback.t</code></pre>
+<pre><span id="VALresponse"><span class="keyword">val</span> response</span> : <code class="type">?code:int -><br>       ?headers:(string, string) Hashtbl.t -><br>       <a href="Functions.Http.html#TYPEresponse_body">response_body</a> -> <a href="Functions.Http.html#TYPEresponse">response</a></code></pre>
 <pre><span id="VALerror"><span class="keyword">val</span> error</span> : <code class="type">code:int -> string -> 'a BsAsyncMonad.Callback.t</code></pre>
 <pre><span id="VALinit"><span class="keyword">val</span> init</span> : <code class="type">unit -> <a href="Functions.Http.html#TYPEt">t</a></code></pre>
 <pre><span id="VALget"><span class="keyword">val</span> get</span> : <code class="type">?auth:bool -> <a href="Functions.Http.html#TYPEt">t</a> -> string -> <a href="Functions.Http.html#TYPEhandler">handler</a> -> unit</code></pre>
