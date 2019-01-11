@@ -156,6 +156,6 @@ function setups(param) {
                   }), instances$1));
 }
 
-BsAsyncMonad.Callback[/* finish */29](undefined, BsAsyncMonad.Callback[/* >> */3](Instances$LidcoreDraco.Runtime[/* setup */1](/* () */0), setups));
+BsAsyncMonad.Callback[/* finish */31](undefined, BsAsyncMonad.Callback[/* >> */3](Instances$LidcoreDraco.Runtime[/* setup */1](/* () */0), setups));
 
 /*  Not a pure module */

@@ -115,7 +115,7 @@ function packer(args, config, mode) {
             });
         }));
   var partial_arg$1 = BsAsyncMonad.Callback[/* |&> */11];
-  return BsAsyncMonad.Callback[/* finish */29](undefined, (function (param) {
+  return BsAsyncMonad.Callback[/* finish */31](undefined, (function (param) {
                 return partial_arg$1(partial_arg, (function (param) {
                               return Tmp$LidcoreDraco.cleanup(tmp);
                             }), param);

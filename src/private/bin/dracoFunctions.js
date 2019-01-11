@@ -48,7 +48,7 @@ function deploy(param) {
   var group = config.functions.group;
   var cmd = "cd " + (String(tmpDir) + (" && " + (String(firebase) + (" deploy --only functions:" + (String(group) + (" --project " + (String(project) + "")))))));
   var partial_arg = BsAsyncMonad.Callback[/* |&> */11];
-  return BsAsyncMonad.Callback[/* finish */29](undefined, (function (param) {
+  return BsAsyncMonad.Callback[/* finish */31](undefined, (function (param) {
                 return partial_arg((function (param) {
                               return Utils$LidcoreDraco.replace_process(cmd, param);
                             }), (function (param) {

@@ -28,7 +28,7 @@ var initializers = Queue.create(/* () */0);
 
 function run(param) {
   var instance = Curry._2(Gcloud$LidcoreDraco.Compute[/* Zone */5][/* vm */7], Gcloud$LidcoreDraco.Compute[/* zone */6](Gcloud$LidcoreDraco.Compute[/* init */0](undefined, /* () */0), Gcloud$LidcoreDraco.zone), Os$LidcoreBsNode.hostname(/* () */0));
-  return BsAsyncMonad.Callback[/* finish */29](exceptionHandler, BsAsyncMonad.Callback[/* >> */3](Curry._1(Gcloud$LidcoreDraco.Compute[/* Zone */5][/* VM */6][/* getMetadata */0], instance), (function (meta) {
+  return BsAsyncMonad.Callback[/* finish */31](exceptionHandler, BsAsyncMonad.Callback[/* >> */3](Curry._1(Gcloud$LidcoreDraco.Compute[/* Zone */5][/* VM */6][/* getMetadata */0], instance), (function (meta) {
                     var items = $$Array.to_list(meta.metadata.items);
                     var data = List.find((function (el) {
                             return el.key === "draco_instance_type";
@@ -191,7 +191,7 @@ function register(label, param) {
                                                                         }));
                                                           }
                                                         }));
-                                                  return BsAsyncMonad.Callback[/* finish */29](exceptionHandler, handler$5);
+                                                  return BsAsyncMonad.Callback[/* finish */31](exceptionHandler, handler$5);
                                                 }
                                               }));
                                 }));
