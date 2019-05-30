@@ -31,7 +31,12 @@ This will initiate a new `draco` project using [create-draco](https://github.com
 
 ## Basic layout
 
-TODO
+The basic layout for a draco project is defined in the [create-draco](https://github.com/lidcore/create-draco) repository. Here are the typical directories and their meaning:
+
+* `config/<stage|production`: contains the project's configuration files, `dotenv` for all the variables to add to the environment and `draco.yml` to configure the `packer` build. `draco.yml` is parsed and merged with the default configuration at [lidcore/draco/config.yml](https://github.com/lidcore/draco/blob/master/config.yml)
+* `src/functions`: contains all the firebase/gcloud function definitions. Files in this directory are implicitely loaded when required and functions are registered via the `Functions` `API` and should be exported in the `mli` files with type `Functions.fn`.
+* `src/instances`: contains all the definitions for the gcloud instances. Files in this directory are implicitely loaded when required. Instances are registered via the `Instances` `API`.
+* 
 
 ## Draco command
 
