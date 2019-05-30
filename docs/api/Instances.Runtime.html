@@ -66,25 +66,25 @@ Module to register new instances.<br>
 
 <div class="info ">
 Configuration for an intance whose callback is
-    * executed when receiving a message.<br>
+      executed when receiving a message.<br>
 </div>
 
 
 <pre><span id="TYPEt"><span class="keyword">type</span> <code class="type"></code>t</span> = <code class="type">[ `Callback of unit -> unit BsAsyncMonad.Callback.t<br>       | `Subscription of <a href="Instances.Runtime.html#TYPEsubscription_instance">subscription_instance</a> ]</code> </pre>
 <div class="info ">
 Instances can be triggered either by running a simple callback
-    * or by receiving a <code class="code">pubsub</code> message.<br>
+      or by receiving a <code class="code">pubsub</code> message.<br>
 </div>
 
 
 <pre><span id="VALregister"><span class="keyword">val</span> register</span> : <code class="type">string -> <a href="Instances.Runtime.html#TYPEt">t</a> -> unit</code></pre><div class="info ">
 Register a new instance. Must be called at runtime to have 
-    * this instance available.<br>
+      this instance available.<br>
 </div>
 
 <pre><span id="VALsetup"><span class="keyword">val</span> setup</span> : <code class="type">unit -> unit BsAsyncMonad.Callback.t</code></pre><div class="info ">
 Setup all instances. Used internally to register all required
-    * <code class="code">pubsub</code> topics and subscriptions.<br>
+      <code class="code">pubsub</code> topics and subscriptions.<br>
 </div>
 
 <pre><span id="VALrun"><span class="keyword">val</span> run</span> : <code class="type">unit -> unit</code></pre><div class="info ">
