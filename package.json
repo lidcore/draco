@@ -47,7 +47,7 @@
     "firebase-admin": "~6.0.0",
     "firebase-functions": "^2.0.5",
     "node-yaml": "^3.1.1",
-    "redis": "^2.8.0",
+    "redis": "^3.1.1",
     "require-all": "^2.2.0",
     "shelljs": "^0.8.2",
     "simple-get": "^3.0.3",
