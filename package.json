@@ -50,7 +50,7 @@
     "redis": "^2.8.0",
     "require-all": "^2.2.0",
     "shelljs": "^0.8.2",
-    "simple-get": "^3.0.3",
+    "simple-get": "^4.0.1",
     "tmp": "0.0.33",
     "winston": "^2.4.4",
     "winston-papertrail": "^1.0.5"
